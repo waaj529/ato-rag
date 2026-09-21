@@ -1,0 +1,2 @@
+"""Future FastAPI application boundary."""
+

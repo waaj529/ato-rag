@@ -1,0 +1,54 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS / Editor artifacts
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+
+# AI Rules & Agent Skills (ignored per request)
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+.agents/
+.agent/
+skills/
+.skills/
+rules/
+.rules/
+.cursorrules
+.cursor/
+.windsurfrules
+.windsurf/
+.clinerules
+.roomodes
+.copilot/
+.github/copilot-instructions.md
+
+# AI Tool & Graph Artifacts
+graphify-out/
+.graphifyignore
+
+# Logs and runtime files
+*.log
+*.pid
+
+# Data & generated corpus/chunk outputs
+data/imports/*.json
+data/imports/*.jsonl.gz
+data/chunks/
+data/source_snapshots/
+data/**/*.log
+data/**/*.pid

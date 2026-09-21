@@ -1,0 +1,2 @@
+"""Domain-specific acquisition adapters."""
+
