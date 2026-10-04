@@ -1,0 +1,16 @@
+{
+  "created_at": "2026-09-24T05:46:52.716914+00:00",
+  "estimate_method": "evenly_spaced_128_input_utf8_byte_ratio",
+  "estimated_corpus_cost_usd": 59.224185999999996,
+  "estimated_corpus_input_tokens": 169211960,
+  "profile_id": "kanon2-768-v1",
+  "provider_calls_made": 1,
+  "sample_cost_usd": 0.0152488,
+  "sample_count": 128,
+  "sample_input_tokens": 43568,
+  "schema_version": "fintax-embedding-profile-probe-1.0",
+  "vector_dimensions": 768,
+  "vector_norm_max": 1.000000112950519,
+  "vector_norm_mean": 1.000000036268818,
+  "vector_norm_min": 0.9999999485237976
+}

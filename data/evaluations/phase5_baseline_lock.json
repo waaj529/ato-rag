@@ -1,0 +1,32 @@
+{
+  "schema_version": "fintax-phase5-baseline-lock-1.0",
+  "status": "complete_frozen",
+  "frozen_at": "2026-09-28T09:40:00+05:00",
+  "benchmark_sha256": "c148aca9600eaaa4748c90e091e3ca967eebed2a3a40668b703409ac90c884a8",
+  "benchmark_report": "data/evaluations/phase5_generation_benchmark.json",
+  "benchmark_report_sha256": "d49c03537148b66ac46103b09e202ed770ce028c6638c865ccb0b157a9f88df4",
+  "exit_gate": {
+    "citation_resolvability_rate_minimum": 0.99,
+    "material_claim_citation_support_rate_minimum": 0.99,
+    "unsupported_claim_rate_maximum": 0.0,
+    "correct_jurisdiction_version_rate_minimum": 0.99,
+    "abstention_correctness_required": 1.0,
+    "mean_answer_completeness_minimum": 0.90,
+    "mean_evidence_support_minimum": 0.95,
+    "mean_jev_judge_score_minimum": 0.90,
+    "repair_invocation_rate_maximum": 0.05
+  },
+  "measured": {
+    "citation_resolvability_rate": 1.0,
+    "material_claim_citation_support_rate": 1.0,
+    "unsupported_claim_rate": 0.0,
+    "correct_jurisdiction_version_rate": 1.0,
+    "abstention_correctness": 1.0,
+    "mean_answer_completeness": 0.9517,
+    "mean_evidence_support": 1.0,
+    "mean_jev_judge_score": 0.9855,
+    "repair_invocation_rate": 0.0,
+    "cases_evaluated": 300
+  },
+  "notes": "Phase 5 grounded generation, deterministic citations and Jev judge frozen. Phase 6 must preserve this baseline unchanged."
+}

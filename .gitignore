@@ -52,3 +52,6 @@ data/chunks/
 data/source_snapshots/
 data/**/*.log
 data/**/*.pid
+
+# Local Python environment
+.venv/

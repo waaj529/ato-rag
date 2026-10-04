@@ -1,0 +1,67 @@
+{
+  "benchmark_sha256": "376344c6dd383709649914676bae860c4a731cac972c94da3bb408a905418733",
+  "cache_mode": "hybrid_warm_cache",
+  "cases_evaluated": 35,
+  "created_at": "2026-09-28T10:24:34.812281+00:00",
+  "git_commit": "14b6f23d1f653c0d1df9e9404e2b4d4860940734",
+  "metrics": {
+    "abstention_quality_rate": 0.9143,
+    "answerable_cases_count": 20,
+    "citation_correctness_rate": 1.0,
+    "decision_reasons_breakdown": {
+      "ADEQUATE_ANSWERED": 17,
+      "Marginal evidence support (coverage=44.4%, score=0.02).": 1,
+      "No authoritative evidence units found in context.": 1,
+      "OUT_OF_CORPUS:FOREIGN_LAW": 1,
+      "OUT_OF_CORPUS:NEAR_DOMAIN_UNINDEXED": 12,
+      "Topic coverage too low (15.4%); distant nearest neighbors.": 1,
+      "Topic coverage too low (30.8%); distant nearest neighbors.": 1,
+      "Topic coverage too low (33.3%); distant nearest neighbors.": 1
+    },
+    "false_abstention_rate": 0.15,
+    "false_answer_rate": 0.0,
+    "manual_verification_rate": 0.0857,
+    "mean_cost_per_query_usd": 0.006021,
+    "model_provider_failures_count": 0,
+    "p50_latency_ms": 76.39,
+    "p95_latency_ms": 2982.07,
+    "pilot_cases_evaluated": 35,
+    "retrieval_reranking_failures_count": 3,
+    "source_version_correctness_rate": 1.0,
+    "synthetic_usefulness_score": 4.74,
+    "unanswerable_abstention_accuracy": 1.0,
+    "unanswerable_cases_count": 15,
+    "user_corrections": [
+      "Abstained unexpectedly on answerable query",
+      "Abstained unexpectedly on answerable query",
+      "Abstained unexpectedly on answerable query"
+    ],
+    "user_corrections_count": 3
+  },
+  "model_versions": {
+    "embeddings": "kanon-2-768-v1",
+    "generation": "openai/gpt-4o",
+    "judge": "jev-judge-v1",
+    "reranker": "kanon-2-reranker"
+  },
+  "run_id": "phase7-pilot-376344c6dd-1790591074",
+  "schema_version": "fintax-phase7-pilot-report-1.0",
+  "status": "safe_for_staging",
+  "baseline": {
+    "frozen_for_staging": true,
+    "synthetic_tuning_prohibited": true,
+    "trial_label": "staging / not formal professional validation",
+    "broad_production_authorized": false
+  },
+  "gate_evaluations": {
+    "safety_gate": "passed",
+    "false_answer_rate": 0.0,
+    "citation_correctness_rate": 1.0,
+    "source_version_correctness_rate": 1.0,
+    "usability_gate": "target_not_yet_met",
+    "false_abstention_rate": 0.15,
+    "target_false_abstention_rate": 0.05,
+    "staging_authorized": true,
+    "broad_production_authorized": false
+  }
+}

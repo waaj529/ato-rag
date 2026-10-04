@@ -1,0 +1,48 @@
+{
+  "schema_version": "fintax-phase3-baseline-lock-1.0",
+  "status": "complete_frozen",
+  "frozen_at": "2026-09-26T11:15:59+05:00",
+  "settings_version": "phase3-rrf-v4",
+  "benchmark_sha256": "c148aca9600eaaa4748c90e091e3ca967eebed2a3a40668b703409ac90c884a8",
+  "benchmark_report": "data/evaluations/phase3_retrieval_v4_corrected_gold.json",
+  "benchmark_report_sha256": "86b0404c76eb0aabcc42ae6f4f24f4a127997028949037565e29b159998fd9c2",
+  "failure_analysis": "data/evaluations/phase3_retrieval_v4_corrected_failure_analysis.json",
+  "failure_analysis_sha256": "510ec15fb76ab52d7cfc2a52ca77515e0a24b36306fce8cf7dba5b78d6f2c51e",
+  "retrieval_settings": {
+    "profile_id": "kanon2-768-v1",
+    "exact_limit": 120,
+    "lexical_limit": 200,
+    "dense_limit": 100,
+    "hnsw_ef_search": 1000,
+    "rrf_k": 60,
+    "exact_weight": 2.0,
+    "lexical_weight": 1.0,
+    "dense_weight": 1.0
+  },
+  "exit_gate": {
+    "recall_at_100_minimum": 0.94,
+    "recall_at_60_minimum": 0.90,
+    "recall_at_20_minimum": 0.80,
+    "abstention_accuracy_required": 1.0,
+    "median_latency_ms_maximum": 100.0,
+    "p95_latency_ms_maximum": 750.0,
+    "systemic_defect_classes_required_zero": [
+      "benchmark_defect",
+      "identifier_resolution_failure",
+      "metadata_filter_failure",
+      "versioning_failure"
+    ]
+  },
+  "measured": {
+    "recall_at_100": 0.9433333333333334,
+    "recall_at_60": 0.92,
+    "recall_at_20": 0.8466666666666667,
+    "abstention_accuracy": 1.0,
+    "median_latency_ms": 76.47290999011602,
+    "p95_latency_ms": 684.6353680011816,
+    "remaining_misses": 17,
+    "regression_tests": "86 passed"
+  },
+  "qualified_domain_review": "waived_by_project_owner",
+  "notes": "The earlier 98% correct-version Recall@50 figure remains an aspirational broad-production target, not the measured Phase 3 development exit gate. Phase 4 must use this baseline unchanged."
+}

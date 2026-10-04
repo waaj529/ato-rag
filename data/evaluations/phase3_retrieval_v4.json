@@ -1,0 +1,122 @@
+{
+  "abstention_accuracy": 1.0,
+  "abstention_cases": 10,
+  "cases": 300,
+  "created_at": "2026-09-26T05:34:48.781274+00:00",
+  "failures": [
+    {
+      "id": "au-tax-0008",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0009",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0011",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0012",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0013",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0018",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0026",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0032",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0035",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0039",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0040",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0042",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0049",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0054",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0056",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0057",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0058",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0061",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0069",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0084",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0155",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0264",
+      "route": "hybrid"
+    }
+  ],
+  "gold_sha256": "3d5c93e8d3e83aa935d7c40711b0f15a1236786f2466cfacbbd19a3eae4615aa",
+  "latency_ms": {
+    "mean": 134.21219065659292,
+    "p50": 67.16952900751494,
+    "p95": 609.3575329869054
+  },
+  "new_query_embeddings": 0,
+  "overall": {
+    "recall_at_1": 0.46,
+    "recall_at_10": 0.7566666666666667,
+    "recall_at_100": 0.9266666666666666,
+    "recall_at_20": 0.8333333333333334,
+    "recall_at_5": 0.6466666666666666,
+    "recall_at_60": 0.9066666666666666
+  },
+  "positive": {
+    "recall_at_1": 0.4413793103448276,
+    "recall_at_10": 0.7482758620689656,
+    "recall_at_100": 0.9241379310344827,
+    "recall_at_20": 0.8275862068965517,
+    "recall_at_5": 0.6344827586206897,
+    "recall_at_60": 0.903448275862069
+  },
+  "positive_cases": 290,
+  "schema_version": "fintax-phase3-retrieval-eval-1.0",
+  "settings_version": "phase3-rrf-v4"
+}

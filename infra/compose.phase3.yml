@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: pgvector/pgvector:0.8.6-pg17-bookworm
+    environment:
+      POSTGRES_DB: fintaxgpt
+      POSTGRES_USER: fintaxgpt
+      POSTGRES_PASSWORD: ${FINTAX_POSTGRES_PASSWORD:-fintaxgpt-local-only}
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - fintax_phase3_pgdata:/var/lib/postgresql/data
+      - ../migrations/0001_phase3_retrieval.sql:/docker-entrypoint-initdb.d/001.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fintaxgpt -d fintaxgpt"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  fintax_phase3_pgdata:

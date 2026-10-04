@@ -9,6 +9,7 @@ import time
 
 from .settings import CHUNKER_VERSION, TOKENIZER_VERSION, ChunkerConfig
 from .writer import ChunkShardWriter
+from services.source_registry import normalize_document
 
 
 def _inventory_entries(manifest: dict) -> list[dict]:
@@ -29,7 +30,7 @@ def _load_document(root: Path, entry: dict) -> tuple[dict, str]:
     lineage = (document.get("document_id"), (document.get("version") or {}).get("version_id"))
     if lineage != (entry["document_id"], entry["version_id"]):
         raise ValueError(f"source lineage changed after import: {path}")
-    return document, path.parent.name
+    return normalize_document(document), path.parent.name
 
 
 def chunk_corpus(import_manifest: Path, output: Path, limit: int | None = None) -> dict:

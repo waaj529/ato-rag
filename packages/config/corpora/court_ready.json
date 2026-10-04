@@ -1,0 +1,7 @@
+{
+  "corpus_id": "court_ready",
+  "source_env": "FINTAX_COURT_READY_CORPUS",
+  "default_source": "data/source_snapshots/court_ready",
+  "required_schema": "ready-document-1.0",
+  "required_verification_flag": "valid_for_chunking"
+}

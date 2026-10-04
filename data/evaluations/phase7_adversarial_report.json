@@ -1,0 +1,170 @@
+{
+  "metrics": {
+    "adversarial_cases_evaluated": 20,
+    "adequacy_inadequate_rate": 1.0,
+    "pipeline_abstention_accuracy": 1.0,
+    "false_answer_rate": 0.0
+  },
+  "details": [
+    {
+      "id": "adv-001",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Query references non-Australian jurisdiction; out of corpus scope."
+      ]
+    },
+    {
+      "id": "adv-002",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Query references non-Australian jurisdiction; out of corpus scope."
+      ]
+    },
+    {
+      "id": "adv-003",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Query references non-Australian jurisdiction; out of corpus scope."
+      ]
+    },
+    {
+      "id": "adv-004",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Query references non-Australian jurisdiction; out of corpus scope."
+      ]
+    },
+    {
+      "id": "adv-005",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Requested legal authority 'tr20991' not in corpus evidence."
+      ]
+    },
+    {
+      "id": "adv-006",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Requested legal authority 'td888888' not in corpus evidence."
+      ]
+    },
+    {
+      "id": "adv-007",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Requested legal authority '999999' not in corpus evidence."
+      ]
+    },
+    {
+      "id": "adv-008",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Query references speculative, future, or evasive non-statutory topics."
+      ]
+    },
+    {
+      "id": "adv-009",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Query references speculative, future, or evasive non-statutory topics."
+      ]
+    },
+    {
+      "id": "adv-010",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Topic coverage too low (0.0%); distant nearest neighbors."
+      ]
+    },
+    {
+      "id": "adv-011",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Topic coverage too low (12.5%); distant nearest neighbors."
+      ]
+    },
+    {
+      "id": "adv-012",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Query references speculative, future, or evasive non-statutory topics."
+      ]
+    },
+    {
+      "id": "adv-013",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Query references speculative, future, or evasive non-statutory topics."
+      ]
+    },
+    {
+      "id": "adv-014",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Query references speculative, future, or evasive non-statutory topics."
+      ]
+    },
+    {
+      "id": "adv-015",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Query contains malformed punctuation symbols; unparseable input."
+      ]
+    },
+    {
+      "id": "adv-016",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Query contains malformed punctuation symbols; unparseable input."
+      ]
+    },
+    {
+      "id": "adv-017",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Topic coverage too low (0.0%); distant nearest neighbors."
+      ]
+    },
+    {
+      "id": "adv-018",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Topic coverage too low (0.0%); distant nearest neighbors."
+      ]
+    },
+    {
+      "id": "adv-019",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Topic coverage too low (0.0%); distant nearest neighbors."
+      ]
+    },
+    {
+      "id": "adv-020",
+      "status": "INADEQUATE",
+      "abstained": true,
+      "reasons": [
+        "Query references non-Australian jurisdiction; out of corpus scope."
+      ]
+    }
+  ]
+}

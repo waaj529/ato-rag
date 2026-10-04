@@ -1,0 +1,730 @@
+{
+  "aggregate": {
+    "benchmark_defect": 10,
+    "dense_miss": 7,
+    "fusion_problem": 1,
+    "identifier_resolution_failure": 1,
+    "lexical_miss": 3,
+    "long_authority_chunk_context": 9
+  },
+  "baseline_settings_version": "phase3-rrf-v2",
+  "case_count": 31,
+  "cases": [
+    {
+      "case_id": "au-tax-0008",
+      "dense_rank": null,
+      "document_ranks": {
+        "dense": null,
+        "exact": null,
+        "lexical": 147
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "96677be6473e45bdc8f5c78f356c3283aa4c313870b8523612db5bd170b1b871",
+      "expected_document": "47fe52c7-2f9c-5522-803c-d8a1a5edacce",
+      "expected_document_chunks": 1,
+      "failure_class": "lexical_miss",
+      "lexical_rank": 147,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Single expected chunk is lexical rank 147; dense top 1000 misses.",
+      "question": "What ATO guidance applies to Salary and wages?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0009",
+      "dense_rank": 74,
+      "document_ranks": {
+        "dense": 74,
+        "exact": null,
+        "lexical": 225
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "536e68f96ff1dc6a7355452ea0b97d32bd72484b4dc3e666fa25410985d5776d",
+      "expected_document": "0486dff8-e062-5268-b2f2-3dd6a49844b5",
+      "expected_document_chunks": 6,
+      "failure_class": "dense_miss",
+      "lexical_rank": 481,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Expected chunk is dense rank 74 at ef_search 1000 but absent at baseline ef_search 200.",
+      "question": "What information is required for Costs of owning?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0011",
+      "dense_rank": null,
+      "document_ranks": {
+        "dense": 439,
+        "exact": null,
+        "lexical": null
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "b649a9f2ce0a222d1d337f2c3b30d89600d35fb117d9e15d1327cbd859c38da5",
+      "expected_document": "45e7c337-3496-5cc0-868e-786e348bc760",
+      "expected_document_chunks": 53,
+      "failure_class": "benchmark_defect",
+      "lexical_rank": null,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Question omits the dependant/base-amount topic needed to identify the source.",
+      "question": "What is the tax treatment when the requirements are met for only part of the year?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0012",
+      "dense_rank": 59,
+      "document_ranks": {
+        "dense": 59,
+        "exact": null,
+        "lexical": null
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "7f19087997c199fda34dc28c5dbb1b0057e24384a07b44aa5dfd09cb7667ba92",
+      "expected_document": "d0a04baa-5007-5f86-ba2a-6fe292a7b42b",
+      "expected_document_chunks": 6,
+      "failure_class": "fusion_problem",
+      "lexical_rank": null,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Expected chunk is dense rank 58 but falls to fused rank 115.",
+      "question": "What is the tax treatment when the company has applied for a TFN?",
+      "rrf_rank": 115,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0013",
+      "dense_rank": 303,
+      "document_ranks": {
+        "dense": 150,
+        "exact": null,
+        "lexical": 195
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "c4fef577c33f5a796f96d394d5ec6f1c735d963014df75a8efcfbf02c295fb42",
+      "expected_document": "434c8b80-905f-55c4-9743-99e879e73cbf",
+      "expected_document_chunks": 5,
+      "failure_class": "dense_miss",
+      "lexical_rank": 478,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Small six-chunk document; expected passage is dense rank 303 and lexical rank 478.",
+      "question": "What ATO guidance applies to Thin capitalisation?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0018",
+      "dense_rank": 405,
+      "document_ranks": {
+        "dense": 3,
+        "exact": null,
+        "lexical": 6
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "a121e467b5e8f15544db1ba32a1082204c758698dbc6544f38024c1fd79ef457",
+      "expected_document": "25ccc474-0487-5a42-bdfe-e3e170ae15e0",
+      "expected_document_chunks": 35,
+      "failure_class": "long_authority_chunk_context",
+      "lexical_rank": 363,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Correct 35-chunk document ranks 3 dense/6 lexical; passage ranks 405/363.",
+      "question": "What information is required for Detailed design?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0026",
+      "dense_rank": null,
+      "document_ranks": {
+        "dense": 972,
+        "exact": null,
+        "lexical": null
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "6791903236aafb0ddc1da38f7ed87cef187f860f7494429866005efde62938a8",
+      "expected_document": "dd328bba-f360-5dca-aae9-5be62d5e5727",
+      "expected_document_chunks": 56,
+      "failure_class": "benchmark_defect",
+      "lexical_rank": null,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Topic 'Practical compliance guideline' does not identify PCG 2021/4.",
+      "question": "What ATO guidance applies to Practical compliance guideline?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0032",
+      "dense_rank": 85,
+      "document_ranks": {
+        "dense": 48,
+        "exact": null,
+        "lexical": null
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "a21e72ad90077f3a5c468bb0b1f6d84b97b4461f19e61d668b25146ce70ee148",
+      "expected_document": "6c91fcdc-4e60-5a3e-a1a9-fbe2e94f769e",
+      "expected_document_chunks": 107,
+      "failure_class": "long_authority_chunk_context",
+      "lexical_rank": null,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "107-chunk document; passage reaches dense rank 85 only at diagnostic ef_search.",
+      "question": "Which entities or transactions are excluded from Checklist - supplement 2019 under Supporting information?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0033",
+      "dense_rank": 67,
+      "document_ranks": {
+        "dense": 67,
+        "exact": null,
+        "lexical": 91
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "15d876d0321db4d4c82dd5b19d3a990d9b8afc6ef083678e87f5bd209ed0df42",
+      "expected_document": "af676c15-9f47-5bc1-9b4f-24140dba6588",
+      "expected_document_chunks": 1,
+      "failure_class": "benchmark_defect",
+      "lexical_rank": 91,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Passage lists indicators and a ruling; it does not define who is a primary producer.",
+      "question": "Who is a primary producer?",
+      "rrf_rank": 122,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0035",
+      "dense_rank": 285,
+      "document_ranks": {
+        "dense": 37,
+        "exact": null,
+        "lexical": null
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "bd65238169868b1ce57e96140d4bcca2caa2f334458acb74e2ebd625e7813c95",
+      "expected_document": "d8b4d8ac-f7bd-59ef-85a2-1d1b1fa7686d",
+      "expected_document_chunks": 116,
+      "failure_class": "long_authority_chunk_context",
+      "lexical_rank": null,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Correct 116-chunk document ranks 37, but passage is dense rank 285.",
+      "question": "What are the lodgment requirements for Completing the consolidated groups losses schedule?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0039",
+      "dense_rank": null,
+      "document_ranks": {
+        "dense": 11,
+        "exact": null,
+        "lexical": 23
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "e826d1aa64322bc9458d98e3695ed23889596c43dc075806ef9ff15632299cb3",
+      "expected_document": "a5a4696f-3bc5-5819-ade2-7b9f900c9464",
+      "expected_document_chunks": 37,
+      "failure_class": "long_authority_chunk_context",
+      "lexical_rank": 68,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Correct 37-chunk document ranks 11/23; expected child is lexical rank 68.",
+      "question": "What ATO guidance applies to Detailed design?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0040",
+      "dense_rank": null,
+      "document_ranks": {
+        "dense": 485,
+        "exact": null,
+        "lexical": null
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "cce6eed8ec94837f2b54657754867fcb8bec4aa571a48fcb2d3900d93b16101b",
+      "expected_document": "7ad83b0d-8398-5a1a-87e4-d9aabc997556",
+      "expected_document_chunks": 5,
+      "failure_class": "benchmark_defect",
+      "lexical_rank": null,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Broad Part A question targets one converted-loss sub-proposition.",
+      "question": "How is Part A Working out attributable income under Division 7 of Part X of the ITAA 1936 treated for tax purposes?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0042",
+      "dense_rank": 403,
+      "document_ranks": {
+        "dense": 188,
+        "exact": null,
+        "lexical": 126
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "7d2d750edfbb636d0c13c4a5dda19fd7445d785afc38df404ec30e8605a7a1f2",
+      "expected_document": "73013fba-5bca-592f-9bcc-7691d614cafe",
+      "expected_document_chunks": 5,
+      "failure_class": "dense_miss",
+      "lexical_rank": 192,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Five-chunk document, but passage ranks 403 dense and 192 lexical.",
+      "question": "What information is required for The discount method?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0049",
+      "dense_rank": 159,
+      "document_ranks": {
+        "dense": 39,
+        "exact": null,
+        "lexical": 101
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "b0b4e60aad9524118625dde04703bc9565f11d71f31167825f6aca0794c884ff",
+      "expected_document": "d667313c-f536-5e36-afa0-21c1ef2a4523",
+      "expected_document_chunks": 16,
+      "failure_class": "dense_miss",
+      "lexical_rank": 332,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Correct document reaches dense rank 39; expected child is dense rank 159.",
+      "question": "What ATO guidance applies to IRPDs in tangible property of a revenue nature?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0054",
+      "dense_rank": 973,
+      "document_ranks": {
+        "dense": 605,
+        "exact": null,
+        "lexical": 241
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "dc577e58613d0743095150911bf0bae373c57e2d950d0fd3fdc393953f36fb79",
+      "expected_document": "aafe9ed5-f5ff-57e8-8334-fab0e5434066",
+      "expected_document_chunks": 13,
+      "failure_class": "dense_miss",
+      "lexical_rank": 443,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Expected passage ranks 973 dense and 443 lexical.",
+      "question": "What ATO guidance applies to Appendix 1: Dividends?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0056",
+      "dense_rank": 227,
+      "document_ranks": {
+        "dense": 227,
+        "exact": null,
+        "lexical": 113
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "6bb45f2aeb3483f4ea12eb2572259be9c3b78f0a657984f2116652b85f1033ba",
+      "expected_document": "6e010206-8108-5a3d-b2f1-e174e6b41859",
+      "expected_document_chunks": 3,
+      "failure_class": "dense_miss",
+      "lexical_rank": 113,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Three-chunk document; expected chunk ranks 227 dense and 113 lexical.",
+      "question": "Who should use this guide?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0057",
+      "dense_rank": null,
+      "document_ranks": {
+        "dense": null,
+        "exact": null,
+        "lexical": null
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "bfe63bd24cd31c768faa6b96d379f597cba7c23219b0d5e5bf84acafa98b6d9d",
+      "expected_document": "9e52db86-e41e-5803-aaf9-bb848056f1c3",
+      "expected_document_chunks": 7,
+      "failure_class": "lexical_miss",
+      "lexical_rank": null,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "TFN passage contains the named term, but template residue makes FTS return no candidate.",
+      "question": "How is Tax file number (TFN) treated for tax purposes?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0058",
+      "dense_rank": 120,
+      "document_ranks": {
+        "dense": 120,
+        "exact": null,
+        "lexical": null
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "7c010dab2f541374f03178b0966c50cac466bff2eef8eac7fb905326543b7e46",
+      "expected_document": "dcb739c0-e80c-56a9-9438-0cfb80c6e063",
+      "expected_document_chunks": 54,
+      "failure_class": "dense_miss",
+      "lexical_rank": null,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Expected document and passage first appear at dense rank 120.",
+      "question": "How is Appendix 6: Assessable foreign exchange gains and deductible foreign exchange losses for Australian income tax treated for tax purposes?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0061",
+      "dense_rank": 506,
+      "document_ranks": {
+        "dense": 28,
+        "exact": null,
+        "lexical": null
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "b7a9cfebd77a2588ee7943b028ea22360207bb219b775bbf04de7d158dc10ada",
+      "expected_document": "879ba358-7cdc-531a-87ea-ed3b6a64e05b",
+      "expected_document_chunks": 18,
+      "failure_class": "long_authority_chunk_context",
+      "lexical_rank": null,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Document ranks 28 dense; form declaration child is dense rank 506.",
+      "question": "What are the lodgment requirements for Annual GST return?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0069",
+      "dense_rank": null,
+      "document_ranks": {
+        "dense": null,
+        "exact": null,
+        "lexical": 980
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "ac2c4f4147352f182fcb7e6609a399543c696941168b89d98a3a0c4c56e12f43",
+      "expected_document": "leg-c2026c00324-293-1-ddddaf1e",
+      "expected_document_chunks": 1,
+      "failure_class": "benchmark_defect",
+      "lexical_rank": 980,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "'What this Division is about' is unqualified across the corpus.",
+      "question": "What this Division is about?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0084",
+      "dense_rank": null,
+      "document_ranks": {
+        "dense": null,
+        "exact": null,
+        "lexical": 833
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "6c5126844fb3a0974f2763f17059edba5b8f5959999cf78a9d12698147d9b3b3",
+      "expected_document": "leg-c2026c00324-820-740-3b5adfcc",
+      "expected_document_chunks": 1,
+      "failure_class": "benchmark_defect",
+      "lexical_rank": 833,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "'What this Subdivision is about' is unqualified across the corpus.",
+      "question": "What this Subdivision is about?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0155",
+      "dense_rank": 496,
+      "document_ranks": {
+        "dense": 496,
+        "exact": null,
+        "lexical": 164
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "5953cab278e715a1942329ea58994778b04b4be185d0f89800eecc74b78f4923",
+      "expected_document": "leg-c2026c00324-121-20-148a6de6",
+      "expected_document_chunks": 1,
+      "failure_class": "lexical_miss",
+      "lexical_rank": 164,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Single exact section is lexical rank 164; query omits its Act/section identifier.",
+      "question": "What records you must keep?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0216",
+      "dense_rank": null,
+      "document_ranks": {
+        "dense": 38,
+        "exact": 1,
+        "lexical": 540
+      },
+      "exact_rank": 28,
+      "expected_chunk_id": "0288327efaede526bf2243a5573539835f72b488d7df814c18121c212407bac3",
+      "expected_document": "87547a63-8766-5ed9-a53d-991ece92f7ad",
+      "expected_document_chunks": 74,
+      "failure_class": "benchmark_defect",
+      "lexical_rank": null,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "'Examples' does not select one example among 74 ruling chunks.",
+      "question": "What does TR 2010/1 conclude about Examples?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0228",
+      "dense_rank": null,
+      "document_ranks": {
+        "dense": null,
+        "exact": 18,
+        "lexical": 866
+      },
+      "exact_rank": 27,
+      "expected_chunk_id": "281be7049ef7adb2f8f6d3dde535cc63f64d41f15d9ffa8b22476ee69adc5672",
+      "expected_document": "cc4fc9b2-0b68-54cf-a318-30abf2b289fa",
+      "expected_document_chunks": 8,
+      "failure_class": "benchmark_defect",
+      "lexical_rank": 1312,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Question asks for the determination generally but expects one amendment paragraph.",
+      "question": "What does TD 2012/2A1 conclude about Taxation Determination TD 2012/2?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0242",
+      "dense_rank": null,
+      "document_ranks": {
+        "dense": null,
+        "exact": 3,
+        "lexical": 3
+      },
+      "exact_rank": 1974,
+      "expected_chunk_id": "dd26bac18a6fd997832345d716b7c68c1f63fcdaa35acdba0485d7a9f7fc99bd",
+      "expected_document": "52d0f66e-df9f-527d-89aa-ba09cc20c708",
+      "expected_document_chunks": 21,
+      "failure_class": "identifier_resolution_failure",
+      "lexical_rank": null,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Act-title matches flood the citation union; ruling passage is exact rank 1974.",
+      "question": "What does LCR 2015/15 conclude about Income Tax Assessment Act 1997?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0252",
+      "dense_rank": null,
+      "document_ranks": {
+        "dense": 52,
+        "exact": 4,
+        "lexical": 653
+      },
+      "exact_rank": 22,
+      "expected_chunk_id": "dad3e682d0d48eeb6ab94d36d748711212c464acfc252d54ae262ebcfcb7e124",
+      "expected_document": "e4629002-3ffc-57d6-9d02-1a836f755e29",
+      "expected_document_chunks": 29,
+      "failure_class": "benchmark_defect",
+      "lexical_rank": null,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Topic 'income' is too broad to select the expected ruling paragraph.",
+      "question": "What does LCR 2019/5 conclude about income?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0264",
+      "dense_rank": 528,
+      "document_ranks": {
+        "dense": 7,
+        "exact": null,
+        "lexical": 59
+      },
+      "exact_rank": null,
+      "expected_chunk_id": "a7edb56761c4919ef18d5374f6e161931eee5e5e259c9dcf8557a033e1441695",
+      "expected_document": "16e87b1b-8d69-57bd-8115-f07a0ad1ce7c",
+      "expected_document_chunks": 79,
+      "failure_class": "long_authority_chunk_context",
+      "lexical_rank": 65,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Correct 79-chunk document ranks 7; expected child is lexical rank 65.",
+      "question": "What information is required for ATO compliance approach to taxation issues associated with cross-border related party financing arrangements and related transactions?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0267",
+      "dense_rank": null,
+      "document_ranks": {
+        "dense": null,
+        "exact": 2,
+        "lexical": null
+      },
+      "exact_rank": 38,
+      "expected_chunk_id": "42cb2826242a7e7b51cd70d34b55e687dee42c559b0f6785839cba50c4d69d51",
+      "expected_document": "944d081d-4f8b-55e2-9250-fae9ea905d22",
+      "expected_document_chunks": 27,
+      "failure_class": "benchmark_defect",
+      "lexical_rank": null,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "Question asks for risk assessment but expected text is only the vehicle-charging introduction.",
+      "question": "How does the Commissioner assess compliance risk for Practical Compliance Guideline PCG 2024/2 under PCG 2024/2?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0287",
+      "dense_rank": 785,
+      "document_ranks": {
+        "dense": 1,
+        "exact": 1,
+        "lexical": 3
+      },
+      "exact_rank": 84,
+      "expected_chunk_id": "332bf298881e5845513eb0b08a28bc07111ed1f32141877f224a40d83eb1e10d",
+      "expected_document": "8241c7a4-85ac-5571-a6ba-63e562b7a48b",
+      "expected_document_chunks": 270,
+      "failure_class": "long_authority_chunk_context",
+      "lexical_rank": 86,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "270-paragraph judgment ranks first by document; paragraph 1 is exact rank 84.",
+      "question": "What issue did the High Court address in Commissioner of Taxation v Bendel ([2026] HCA 18)?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0288",
+      "dense_rank": 223,
+      "document_ranks": {
+        "dense": 1,
+        "exact": 1,
+        "lexical": 1
+      },
+      "exact_rank": 102,
+      "expected_chunk_id": "eb9d8ceb0c72b556a19ddd5db2583be633cefb06f488c20ae8289d1cef084bc1",
+      "expected_document": "103bc158-cbd9-5a65-94d6-125e4fee7580",
+      "expected_document_chunks": 247,
+      "failure_class": "long_authority_chunk_context",
+      "lexical_rank": 102,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "247-paragraph judgment ranks first; paragraph 1 is exact rank 102.",
+      "question": "What issue did the High Court address in Commissioner of Taxation v PepsiCo Inc / Commissioner of Taxation v Stokely-Van Camp Inc ([2025] HCA 30)?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0290",
+      "dense_rank": null,
+      "document_ranks": {
+        "dense": 1,
+        "exact": 1,
+        "lexical": 1
+      },
+      "exact_rank": 86,
+      "expected_chunk_id": "a635a016ab04b277d8a9d00ffda13493205ed00d43971bdcf855211b755814b1",
+      "expected_document": "5b5227f4-c8af-5834-9cbb-5bebf662e9ee",
+      "expected_document_chunks": 112,
+      "failure_class": "long_authority_chunk_context",
+      "lexical_rank": 86,
+      "metadata": {
+        "active": true,
+        "embedding_present": true
+      },
+      "notes": "112-paragraph judgment ranks first; paragraph 1 is exact rank 86.",
+      "question": "What issue did the High Court address in Commissioner of Taxation v Sharpcan Pty Ltd ([2019] HCA 36)?",
+      "rrf_rank": null,
+      "unresolved_identifiers": []
+    }
+  ],
+  "created_at": "2026-09-26T05:31:26.582700+00:00",
+  "gold_sha256": "3d5c93e8d3e83aa935d7c40711b0f15a1236786f2466cfacbbd19a3eae4615aa",
+  "schema_version": "fintax-phase3-retrieval-failure-analysis-1.0"
+}

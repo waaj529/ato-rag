@@ -8,10 +8,28 @@ from collections import Counter
 import gzip
 import json
 from pathlib import Path
+import sys
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT_ROOT))
+
+from services.chunker.validation import SourceResolver, validate_source_locator
+
+
 DEFAULT_ROOT = PROJECT_ROOT / "data/chunks/ato_ready"
+
+
+def sizing_failure(record: dict, hard_max: int) -> str | None:
+    sizing = record.get("sizing")
+    if not isinstance(sizing, dict):
+        return "missing_sizing"
+    units = sizing.get("text_units")
+    if sizing.get("method") != "unicode-lexical-v1" or not isinstance(units, int):
+        return "invalid_sizing"
+    if units > hard_max:
+        return "oversized_chunk"
+    return None
 
 
 def main() -> int:
@@ -21,6 +39,7 @@ def main() -> int:
 
     report = json.loads((args.root / "chunking_report.json").read_text())
     hard_max = report["config"]["child_hard_max_tokens"]
+    resolver = SourceResolver(Path(report["source_import_manifest"]))
     parent_ids: set[str] = set()
     chunk_ids: set[str] = set()
     counts: Counter[str] = Counter()
@@ -58,19 +77,24 @@ def main() -> int:
             chunk_ids.add(chunk_id)
             if record.get("parent_chunk_id") not in parent_ids:
                 failures["orphan_chunk"] += 1
-            if record.get("token_count", hard_max + 1) > hard_max:
-                failures["oversized_chunk"] += 1
+            sizing_error = sizing_failure(record, hard_max)
+            if sizing_error:
+                failures[sizing_error] += 1
             if (record.get("document_id"), record.get("version_id")) not in catalog_lineage:
                 failures["missing_citation_lineage"] += 1
             required = ("title", "source_url", "publisher", "corpus",
                         "source_class", "applicable_periods", "historical_guidance", "binding_effect",
-                        "authority_rank", "chunk_type", "source_locator")
+                        "authority_rank", "page_status", "canonical_reference",
+                        "chunk_type", "source_locator")
             if any(key not in record for key in required):
                 failures["missing_chunk_metadata"] += 1
             forbidden = ("embedding_model", "embedding_dimension", "indexed_at",
                          "index_namespace")
             if any(key in record for key in forbidden):
                 failures["premature_index_metadata"] += 1
+            locator_failure = validate_source_locator(record, resolver)
+            if locator_failure:
+                failures[locator_failure] += 1
             counts["children"] += 1
             counts[f"child_{record.get('chunk_type', 'unknown')}"] += 1
 
@@ -94,6 +118,7 @@ def main() -> int:
             "citation and version lineage present",
             "document and chunk metadata present on every child",
             "index metadata absent before embedding/indexing",
+            "exact canonical character spans and valid table row ranges",
             "output counts match chunking report",
         ],
     }

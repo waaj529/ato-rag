@@ -1,7 +1,7 @@
 {
   "corpus_id": "ato_ready",
   "source_env": "FINTAX_READY_CORPUS",
-  "default_source": "/Users/mac/Ato website scraper/ato_data/ready_for_chunking",
+  "default_source": "/Users/mac/fintaxgpt-rag/data/source_snapshots/ato_ready",
   "required_schema": "ready-document-1.0",
   "required_verification_flag": "valid_for_chunking"
 }

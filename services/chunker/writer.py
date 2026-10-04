@@ -46,7 +46,8 @@ class ChunkShardWriter:
         for child in children:
             if child["chunk_id"] in self.child_ids:
                 raise RuntimeError(f"duplicate chunk id: {child['chunk_id']}")
-            if child["token_count"] > self.config.child_hard_max_tokens:
+            units = child["sizing"]["text_units"]
+            if units > self.config.child_hard_max_tokens:
                 raise RuntimeError(f"oversized chunk: {child['chunk_id']}")
             self.child_ids.add(child["chunk_id"])
             self._handle("children", shard).write(compact(child))

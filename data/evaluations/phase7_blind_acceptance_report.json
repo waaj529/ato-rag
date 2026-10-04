@@ -1,0 +1,56 @@
+{
+  "benchmark_sha256": "cf15eea8255398ed779d0739f685c5173a41d09bf6af7f1d808e7159ac68cfac",
+  "cache_mode": "hybrid_warm_cache",
+  "cases_evaluated": 35,
+  "created_at": "2026-09-28T10:08:44.173757+00:00",
+  "git_commit": "14b6f23d1f653c0d1df9e9404e2b4d4860940734",
+  "metrics": {
+    "abstention_quality_rate": 0.7143,
+    "answerable_cases_count": 20,
+    "citation_correctness_rate": 1.0,
+    "decision_reasons_breakdown": {
+      "ADEQUATE_ANSWERED": 24,
+      "JURISDICTION_OUT_OF_SCOPE: Query references non-Australian jurisdiction.": 3,
+      "No authoritative evidence units found in context.": 4,
+      "POLICY_REJECTED:MALFORMED_SYNTAX": 1,
+      "Topic coverage too low (15.4%); distant nearest neighbors.": 1,
+      "Topic coverage too low (33.3%); distant nearest neighbors.": 1,
+      "Topic coverage too low (7.7%); distant nearest neighbors.": 1
+    },
+    "false_abstention_rate": 0.15,
+    "false_answer_rate": 0.4667,
+    "manual_verification_rate": 0.2857,
+    "mean_cost_per_query_usd": 0.008626,
+    "model_provider_failures_count": 0,
+    "p50_latency_ms": 2795.64,
+    "p95_latency_ms": 8441.15,
+    "pilot_cases_evaluated": 35,
+    "retrieval_reranking_failures_count": 3,
+    "source_version_correctness_rate": 1.0,
+    "synthetic_usefulness_score": 3.94,
+    "unanswerable_abstention_accuracy": 0.5333,
+    "unanswerable_cases_count": 15,
+    "user_corrections": [
+      "Abstained unexpectedly on answerable query",
+      "Abstained unexpectedly on answerable query",
+      "Abstained unexpectedly on answerable query",
+      "Hallucinated answer on unanswerable query",
+      "Hallucinated answer on unanswerable query",
+      "Hallucinated answer on unanswerable query",
+      "Hallucinated answer on unanswerable query",
+      "Hallucinated answer on unanswerable query",
+      "Hallucinated answer on unanswerable query",
+      "Hallucinated answer on unanswerable query"
+    ],
+    "user_corrections_count": 10
+  },
+  "model_versions": {
+    "embeddings": "kanon-2-768-v1",
+    "generation": "openai/gpt-4o",
+    "judge": "jev-judge-v1",
+    "reranker": "kanon-2-reranker"
+  },
+  "run_id": "phase7-pilot-cf15eea825-1790590124",
+  "schema_version": "fintax-phase7-pilot-report-1.0",
+  "status": "controlled_pilot_evaluated"
+}

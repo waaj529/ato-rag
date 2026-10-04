@@ -1,0 +1,1763 @@
+{
+  "baseline_settings_version": "phase3-rrf-v2",
+  "case_count": 31,
+  "cases": [
+    {
+      "case_id": "au-tax-0008",
+      "category": "historical_as_at",
+      "diagnostic_ranks": {
+        "dense": null,
+        "exact": null,
+        "lexical": 147
+      },
+      "document_ranks": {
+        "dense": null,
+        "exact": null,
+        "lexical": 147
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "96677be6473e45bdc8f5c78f356c3283aa4c313870b8523612db5bd170b1b871",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 1051,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0001"
+          }
+        }
+      ],
+      "expected_document": "47fe52c7-2f9c-5522-803c-d8a1a5edacce",
+      "expected_document_chunks": 1,
+      "expected_locator": {
+        "char_end": 422,
+        "char_start": 127,
+        "section_id": "sec_0001"
+      },
+      "expected_version": "v1_c4c17d5288136de2",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What ATO guidance applies to Salary and wages?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0009",
+      "category": "historical_as_at",
+      "diagnostic_ranks": {
+        "dense": 74,
+        "exact": null,
+        "lexical": 481
+      },
+      "document_ranks": {
+        "dense": 74,
+        "exact": null,
+        "lexical": 225
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "536e68f96ff1dc6a7355452ea0b97d32bd72484b4dc3e666fa25410985d5776d",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 584,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0002"
+          }
+        }
+      ],
+      "expected_document": "0486dff8-e062-5268-b2f2-3dd6a49844b5",
+      "expected_document_chunks": 6,
+      "expected_locator": {
+        "char_end": 584,
+        "char_start": 218,
+        "section_id": "sec_0002"
+      },
+      "expected_version": "v1_194fd6de561409f6",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What information is required for Costs of owning?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0011",
+      "category": "historical_as_at",
+      "diagnostic_ranks": {
+        "dense": null,
+        "exact": null,
+        "lexical": null
+      },
+      "document_ranks": {
+        "dense": 439,
+        "exact": null,
+        "lexical": null
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "b649a9f2ce0a222d1d337f2c3b30d89600d35fb117d9e15d1327cbd859c38da5",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 1368,
+            "char_start": 798,
+            "locator_precision": "exact",
+            "section_id": "sec_0013"
+          }
+        }
+      ],
+      "expected_document": "45e7c337-3496-5cc0-868e-786e348bc760",
+      "expected_document_chunks": 53,
+      "expected_locator": {
+        "char_end": 1368,
+        "char_start": 1131,
+        "section_id": "sec_0013"
+      },
+      "expected_version": "v1_1fb5090a72baf846",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What is the tax treatment when the requirements are met for only part of the year?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0012",
+      "category": "historical_as_at",
+      "diagnostic_ranks": {
+        "dense": 59,
+        "exact": null,
+        "lexical": null
+      },
+      "document_ranks": {
+        "dense": 59,
+        "exact": null,
+        "lexical": null
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "7f19087997c199fda34dc28c5dbb1b0057e24384a07b44aa5dfd09cb7667ba92",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 752,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0001"
+          }
+        }
+      ],
+      "expected_document": "d0a04baa-5007-5f86-ba2a-6fe292a7b42b",
+      "expected_document_chunks": 6,
+      "expected_locator": {
+        "char_end": 587,
+        "char_start": 171,
+        "section_id": "sec_0001"
+      },
+      "expected_version": "v1_b0242826bce9b98b",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": 58,
+        "exact": null,
+        "fused": 115,
+        "lexical": null
+      },
+      "question": "What is the tax treatment when the company has applied for a TFN?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0013",
+      "category": "historical_as_at",
+      "diagnostic_ranks": {
+        "dense": 303,
+        "exact": null,
+        "lexical": 478
+      },
+      "document_ranks": {
+        "dense": 150,
+        "exact": null,
+        "lexical": 195
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "c4fef577c33f5a796f96d394d5ec6f1c735d963014df75a8efcfbf02c295fb42",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 501,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0001"
+          }
+        }
+      ],
+      "expected_document": "434c8b80-905f-55c4-9743-99e879e73cbf",
+      "expected_document_chunks": 5,
+      "expected_locator": {
+        "char_end": 358,
+        "char_start": 0,
+        "section_id": "sec_0001"
+      },
+      "expected_version": "v1_b64738de8af70d97",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What ATO guidance applies to Thin capitalisation?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0018",
+      "category": "statutory_concept_paraphrase",
+      "diagnostic_ranks": {
+        "dense": 405,
+        "exact": null,
+        "lexical": 363
+      },
+      "document_ranks": {
+        "dense": 3,
+        "exact": null,
+        "lexical": 6
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "a121e467b5e8f15544db1ba32a1082204c758698dbc6544f38024c1fd79ef457",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 821,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0001"
+          }
+        }
+      ],
+      "expected_document": "25ccc474-0487-5a42-bdfe-e3e170ae15e0",
+      "expected_document_chunks": 35,
+      "expected_locator": {
+        "char_end": 709,
+        "char_start": 363,
+        "section_id": "sec_0001"
+      },
+      "expected_version": "v1_8eb4766850fe8eae",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What information is required for Detailed design?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0026",
+      "category": "statutory_concept_paraphrase",
+      "diagnostic_ranks": {
+        "dense": null,
+        "exact": null,
+        "lexical": null
+      },
+      "document_ranks": {
+        "dense": 972,
+        "exact": null,
+        "lexical": null
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "6791903236aafb0ddc1da38f7ed87cef187f860f7494429866005efde62938a8",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 717,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0006"
+          }
+        }
+      ],
+      "expected_document": "dd328bba-f360-5dca-aae9-5be62d5e5727",
+      "expected_document_chunks": 56,
+      "expected_locator": {
+        "char_end": 307,
+        "char_start": 0,
+        "section_id": "sec_0006"
+      },
+      "expected_version": "v1_42da4856ede6a032",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What ATO guidance applies to Practical compliance guideline?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0032",
+      "category": "statutory_concept_paraphrase",
+      "diagnostic_ranks": {
+        "dense": 85,
+        "exact": null,
+        "lexical": null
+      },
+      "document_ranks": {
+        "dense": 48,
+        "exact": null,
+        "lexical": null
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "a21e72ad90077f3a5c468bb0b1f6d84b97b4461f19e61d668b25146ce70ee148",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 720,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0006"
+          }
+        }
+      ],
+      "expected_document": "6c91fcdc-4e60-5a3e-a1a9-fbe2e94f769e",
+      "expected_document_chunks": 107,
+      "expected_locator": {
+        "char_end": 720,
+        "char_start": 406,
+        "section_id": "sec_0006"
+      },
+      "expected_version": "v1_59624219df455acf",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "Which entities or transactions are excluded from Checklist - supplement 2019 under Supporting information?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0033",
+      "category": "statutory_concept_paraphrase",
+      "diagnostic_ranks": {
+        "dense": 67,
+        "exact": null,
+        "lexical": 91
+      },
+      "document_ranks": {
+        "dense": 67,
+        "exact": null,
+        "lexical": 91
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "15d876d0321db4d4c82dd5b19d3a990d9b8afc6ef083678e87f5bd209ed0df42",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 774,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0001"
+          }
+        }
+      ],
+      "expected_document": "af676c15-9f47-5bc1-9b4f-24140dba6588",
+      "expected_document_chunks": 1,
+      "expected_locator": {
+        "char_end": 618,
+        "char_start": 299,
+        "section_id": "sec_0001"
+      },
+      "expected_version": "v1_1361dc23adaca1de",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": 67,
+        "exact": null,
+        "fused": 122,
+        "lexical": null
+      },
+      "question": "Who is a primary producer?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0035",
+      "category": "statutory_concept_paraphrase",
+      "diagnostic_ranks": {
+        "dense": 285,
+        "exact": null,
+        "lexical": null
+      },
+      "document_ranks": {
+        "dense": 37,
+        "exact": null,
+        "lexical": null
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "bd65238169868b1ce57e96140d4bcca2caa2f334458acb74e2ebd625e7813c95",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 473,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0007"
+          }
+        }
+      ],
+      "expected_document": "d8b4d8ac-f7bd-59ef-85a2-1d1b1fa7686d",
+      "expected_document_chunks": 116,
+      "expected_locator": {
+        "char_end": 303,
+        "char_start": 0,
+        "section_id": "sec_0007"
+      },
+      "expected_version": "v1_ad20ecd0be4fd0ea",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What are the lodgment requirements for Completing the consolidated groups losses schedule?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0039",
+      "category": "statutory_concept_paraphrase",
+      "diagnostic_ranks": {
+        "dense": null,
+        "exact": null,
+        "lexical": 68
+      },
+      "document_ranks": {
+        "dense": 11,
+        "exact": null,
+        "lexical": 23
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "e826d1aa64322bc9458d98e3695ed23889596c43dc075806ef9ff15632299cb3",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 1203,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0001"
+          }
+        }
+      ],
+      "expected_document": "a5a4696f-3bc5-5819-ade2-7b9f900c9464",
+      "expected_document_chunks": 37,
+      "expected_locator": {
+        "char_end": 570,
+        "char_start": 183,
+        "section_id": "sec_0001"
+      },
+      "expected_version": "v1_cac295ef9bd28a24",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What ATO guidance applies to Detailed design?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0040",
+      "category": "historical_as_at",
+      "diagnostic_ranks": {
+        "dense": null,
+        "exact": null,
+        "lexical": null
+      },
+      "document_ranks": {
+        "dense": 485,
+        "exact": null,
+        "lexical": null
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "cce6eed8ec94837f2b54657754867fcb8bec4aa571a48fcb2d3900d93b16101b",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 1058,
+            "char_start": 381,
+            "locator_precision": "exact",
+            "section_id": "sec_0002"
+          }
+        }
+      ],
+      "expected_document": "7ad83b0d-8398-5a1a-87e4-d9aabc997556",
+      "expected_document_chunks": 5,
+      "expected_locator": {
+        "char_end": 831,
+        "char_start": 381,
+        "section_id": "sec_0002"
+      },
+      "expected_version": "v1_69494152ae09a6a5",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "How is Part A Working out attributable income under Division 7 of Part X of the ITAA 1936 treated for tax purposes?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0042",
+      "category": "historical_as_at",
+      "diagnostic_ranks": {
+        "dense": 403,
+        "exact": null,
+        "lexical": 192
+      },
+      "document_ranks": {
+        "dense": 188,
+        "exact": null,
+        "lexical": 126
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "7d2d750edfbb636d0c13c4a5dda19fd7445d785afc38df404ec30e8605a7a1f2",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 2267,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0001"
+          }
+        }
+      ],
+      "expected_document": "73013fba-5bca-592f-9bcc-7691d614cafe",
+      "expected_document_chunks": 5,
+      "expected_locator": {
+        "char_end": 379,
+        "char_start": 60,
+        "section_id": "sec_0001"
+      },
+      "expected_version": "v1_a9a33bd28fd66b27",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What information is required for The discount method?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0049",
+      "category": "historical_as_at",
+      "diagnostic_ranks": {
+        "dense": 159,
+        "exact": null,
+        "lexical": 332
+      },
+      "document_ranks": {
+        "dense": 39,
+        "exact": null,
+        "lexical": 101
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "b0b4e60aad9524118625dde04703bc9565f11d71f31167825f6aca0794c884ff",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 3572,
+            "char_start": 412,
+            "locator_precision": "exact",
+            "section_id": "sec_0001"
+          }
+        }
+      ],
+      "expected_document": "d667313c-f536-5e36-afa0-21c1ef2a4523",
+      "expected_document_chunks": 16,
+      "expected_locator": {
+        "char_end": 2037,
+        "char_start": 1641,
+        "section_id": "sec_0001"
+      },
+      "expected_version": "v1_5332da16eb15ba61",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What ATO guidance applies to IRPDs in tangible property of a revenue nature?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0054",
+      "category": "historical_as_at",
+      "diagnostic_ranks": {
+        "dense": 973,
+        "exact": null,
+        "lexical": 443
+      },
+      "document_ranks": {
+        "dense": 605,
+        "exact": null,
+        "lexical": 241
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "dc577e58613d0743095150911bf0bae373c57e2d950d0fd3fdc393953f36fb79",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 562,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0001"
+          }
+        }
+      ],
+      "expected_document": "aafe9ed5-f5ff-57e8-8334-fab0e5434066",
+      "expected_document_chunks": 13,
+      "expected_locator": {
+        "char_end": 269,
+        "char_start": 0,
+        "section_id": "sec_0001"
+      },
+      "expected_version": "v1_80f360c25d37567b",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What ATO guidance applies to Appendix 1: Dividends?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0056",
+      "category": "historical_as_at",
+      "diagnostic_ranks": {
+        "dense": 227,
+        "exact": null,
+        "lexical": 113
+      },
+      "document_ranks": {
+        "dense": 227,
+        "exact": null,
+        "lexical": 113
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "6bb45f2aeb3483f4ea12eb2572259be9c3b78f0a657984f2116652b85f1033ba",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 1354,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0002"
+          }
+        }
+      ],
+      "expected_document": "6e010206-8108-5a3d-b2f1-e174e6b41859",
+      "expected_document_chunks": 3,
+      "expected_locator": {
+        "char_end": 614,
+        "char_start": 370,
+        "section_id": "sec_0002"
+      },
+      "expected_version": "v1_62b49aaaf5c6e951",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "Who should use this guide?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0057",
+      "category": "historical_as_at",
+      "diagnostic_ranks": {
+        "dense": null,
+        "exact": null,
+        "lexical": null
+      },
+      "document_ranks": {
+        "dense": null,
+        "exact": null,
+        "lexical": null
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "bfe63bd24cd31c768faa6b96d379f597cba7c23219b0d5e5bf84acafa98b6d9d",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 202,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0004"
+          }
+        }
+      ],
+      "expected_document": "9e52db86-e41e-5803-aaf9-bb848056f1c3",
+      "expected_document_chunks": 7,
+      "expected_locator": {
+        "char_end": 202,
+        "char_start": 0,
+        "section_id": "sec_0004"
+      },
+      "expected_version": "v1_5f792cdcd6d980ee",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "How is Tax file number (TFN) treated for tax purposes?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0058",
+      "category": "historical_as_at",
+      "diagnostic_ranks": {
+        "dense": 120,
+        "exact": null,
+        "lexical": null
+      },
+      "document_ranks": {
+        "dense": 120,
+        "exact": null,
+        "lexical": null
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "7c010dab2f541374f03178b0966c50cac466bff2eef8eac7fb905326543b7e46",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 3355,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0006"
+          }
+        }
+      ],
+      "expected_document": "dcb739c0-e80c-56a9-9438-0cfb80c6e063",
+      "expected_document_chunks": 54,
+      "expected_locator": {
+        "char_end": 406,
+        "char_start": 0,
+        "section_id": "sec_0006"
+      },
+      "expected_version": "v1_1df59bbdab3a7fd9",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "How is Appendix 6: Assessable foreign exchange gains and deductible foreign exchange losses for Australian income tax treated for tax purposes?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0061",
+      "category": "statutory_concept_paraphrase",
+      "diagnostic_ranks": {
+        "dense": 506,
+        "exact": null,
+        "lexical": null
+      },
+      "document_ranks": {
+        "dense": 28,
+        "exact": null,
+        "lexical": null
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "b7a9cfebd77a2588ee7943b028ea22360207bb219b775bbf04de7d158dc10ada",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 3770,
+            "char_start": 2015,
+            "locator_precision": "exact",
+            "section_id": "sec_0002"
+          }
+        }
+      ],
+      "expected_document": "879ba358-7cdc-531a-87ea-ed3b6a64e05b",
+      "expected_document_chunks": 18,
+      "expected_locator": {
+        "char_end": 3245,
+        "char_start": 3038,
+        "section_id": "sec_0002"
+      },
+      "expected_version": "v1_b6c328c82af841c6",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What are the lodgment requirements for Annual GST return?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0069",
+      "category": "exact_section_lookup",
+      "diagnostic_ranks": {
+        "dense": null,
+        "exact": null,
+        "lexical": 980
+      },
+      "document_ranks": {
+        "dense": null,
+        "exact": null,
+        "lexical": 980
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "ac2c4f4147352f182fcb7e6609a399543c696941168b89d98a3a0c4c56e12f43",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 514,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "C2026C00324#293-1"
+          }
+        }
+      ],
+      "expected_document": "leg-c2026c00324-293-1-ddddaf1e",
+      "expected_document_chunks": 1,
+      "expected_locator": {
+        "char_end": 493,
+        "char_start": 0,
+        "section_id": "C2026C00324#293-1"
+      },
+      "expected_version": "v1_C2026C00324_293-1",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What this Division is about?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0084",
+      "category": "exact_section_lookup",
+      "diagnostic_ranks": {
+        "dense": null,
+        "exact": null,
+        "lexical": 833
+      },
+      "document_ranks": {
+        "dense": null,
+        "exact": null,
+        "lexical": 833
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "6c5126844fb3a0974f2763f17059edba5b8f5959999cf78a9d12698147d9b3b3",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 576,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "C2026C00324#820-740"
+          }
+        }
+      ],
+      "expected_document": "leg-c2026c00324-820-740-3b5adfcc",
+      "expected_document_chunks": 1,
+      "expected_locator": {
+        "char_end": 534,
+        "char_start": 0,
+        "section_id": "C2026C00324#820-740"
+      },
+      "expected_version": "v1_C2026C00324_820-740",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What this Subdivision is about?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0155",
+      "category": "exact_section_lookup",
+      "diagnostic_ranks": {
+        "dense": 496,
+        "exact": null,
+        "lexical": 164
+      },
+      "document_ranks": {
+        "dense": 496,
+        "exact": null,
+        "lexical": 164
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "5953cab278e715a1942329ea58994778b04b4be185d0f89800eecc74b78f4923",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 3461,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "C2026C00324#121-20"
+          }
+        }
+      ],
+      "expected_document": "leg-c2026c00324-121-20-148a6de6",
+      "expected_document_chunks": 1,
+      "expected_locator": {
+        "char_end": 392,
+        "char_start": 0,
+        "section_id": "C2026C00324#121-20"
+      },
+      "expected_version": "v1_C2026C00324_121-20",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What records you must keep?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0216",
+      "category": "authority_lookup",
+      "diagnostic_ranks": {
+        "dense": null,
+        "exact": 28,
+        "lexical": null
+      },
+      "document_ranks": {
+        "dense": 38,
+        "exact": 1,
+        "lexical": 540
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "0288327efaede526bf2243a5573539835f72b488d7df814c18121c212407bac3",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 744,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0020"
+          }
+        }
+      ],
+      "expected_document": "87547a63-8766-5ed9-a53d-991ece92f7ad",
+      "expected_document_chunks": 74,
+      "expected_locator": {
+        "char_end": 439,
+        "char_start": 58,
+        "section_id": "sec_0020"
+      },
+      "expected_version": "v1_5a5f2326d314564d",
+      "identifiers": [
+        "tr20101"
+      ],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What does TR 2010/1 conclude about Examples?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0228",
+      "category": "authority_lookup",
+      "diagnostic_ranks": {
+        "dense": null,
+        "exact": 27,
+        "lexical": 1312
+      },
+      "document_ranks": {
+        "dense": null,
+        "exact": 18,
+        "lexical": 866
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "281be7049ef7adb2f8f6d3dde535cc63f64d41f15d9ffa8b22476ee69adc5672",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 2414,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0004"
+          }
+        }
+      ],
+      "expected_document": "cc4fc9b2-0b68-54cf-a318-30abf2b289fa",
+      "expected_document_chunks": 8,
+      "expected_locator": {
+        "char_end": 812,
+        "char_start": 401,
+        "section_id": "sec_0004"
+      },
+      "expected_version": "v1_5a0bcd63f7673b10",
+      "identifiers": [
+        "td20122a1",
+        "td20122"
+      ],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What does TD 2012/2A1 conclude about Taxation Determination TD 2012/2?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0242",
+      "category": "authority_lookup",
+      "diagnostic_ranks": {
+        "dense": null,
+        "exact": 1974,
+        "lexical": null
+      },
+      "document_ranks": {
+        "dense": null,
+        "exact": 3,
+        "lexical": 3
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "dd26bac18a6fd997832345d716b7c68c1f63fcdaa35acdba0485d7a9f7fc99bd",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 3101,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0004"
+          }
+        }
+      ],
+      "expected_document": "52d0f66e-df9f-527d-89aa-ba09cc20c708",
+      "expected_document_chunks": 21,
+      "expected_locator": {
+        "char_end": 1633,
+        "char_start": 1225,
+        "section_id": "sec_0004"
+      },
+      "expected_version": "v1_2b308619d7840ea7",
+      "identifiers": [
+        "lcr201515",
+        "incometaxassessmentact1997"
+      ],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What does LCR 2015/15 conclude about Income Tax Assessment Act 1997?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0252",
+      "category": "authority_lookup",
+      "diagnostic_ranks": {
+        "dense": null,
+        "exact": 22,
+        "lexical": null
+      },
+      "document_ranks": {
+        "dense": 52,
+        "exact": 4,
+        "lexical": 653
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "dad3e682d0d48eeb6ab94d36d748711212c464acfc252d54ae262ebcfcb7e124",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 3085,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0004"
+          }
+        }
+      ],
+      "expected_document": "e4629002-3ffc-57d6-9d02-1a836f755e29",
+      "expected_document_chunks": 29,
+      "expected_locator": {
+        "char_end": 1996,
+        "char_start": 1568,
+        "section_id": "sec_0004"
+      },
+      "expected_version": "v1_3c15e1678760ae43",
+      "identifiers": [
+        "lcr20195"
+      ],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What does LCR 2019/5 conclude about income?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0264",
+      "category": "authority_lookup",
+      "diagnostic_ranks": {
+        "dense": 528,
+        "exact": null,
+        "lexical": 65
+      },
+      "document_ranks": {
+        "dense": 7,
+        "exact": null,
+        "lexical": 59
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "a7edb56761c4919ef18d5374f6e161931eee5e5e259c9dcf8557a033e1441695",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 1333,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0004"
+          }
+        }
+      ],
+      "expected_document": "16e87b1b-8d69-57bd-8115-f07a0ad1ce7c",
+      "expected_document_chunks": 79,
+      "expected_locator": {
+        "char_end": 394,
+        "char_start": 0,
+        "section_id": "sec_0004"
+      },
+      "expected_version": "v1_946fff26b071ef83",
+      "identifiers": [],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What information is required for ATO compliance approach to taxation issues associated with cross-border related party financing arrangements and related transactions?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0267",
+      "category": "authority_lookup",
+      "diagnostic_ranks": {
+        "dense": null,
+        "exact": 38,
+        "lexical": null
+      },
+      "document_ranks": {
+        "dense": null,
+        "exact": 2,
+        "lexical": null
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "42cb2826242a7e7b51cd70d34b55e687dee42c559b0f6785839cba50c4d69d51",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 3023,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "sec_0003"
+          }
+        }
+      ],
+      "expected_document": "944d081d-4f8b-55e2-9250-fae9ea905d22",
+      "expected_document_chunks": 27,
+      "expected_locator": {
+        "char_end": 1781,
+        "char_start": 1207,
+        "section_id": "sec_0003"
+      },
+      "expected_version": "v1_7d643de34a6246bf",
+      "identifiers": [
+        "pcg20242"
+      ],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "How does the Commissioner assess compliance risk for Practical Compliance Guideline PCG 2024/2 under PCG 2024/2?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0287",
+      "category": "authority_lookup",
+      "diagnostic_ranks": {
+        "dense": 785,
+        "exact": 84,
+        "lexical": 86
+      },
+      "document_ranks": {
+        "dense": 1,
+        "exact": 1,
+        "lexical": 3
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "332bf298881e5845513eb0b08a28bc07111ed1f32141877f224a40d83eb1e10d",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 547,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "para_1"
+          }
+        }
+      ],
+      "expected_document": "8241c7a4-85ac-5571-a6ba-63e562b7a48b",
+      "expected_document_chunks": 270,
+      "expected_locator": {
+        "char_end": 545,
+        "char_start": 0,
+        "section_id": "para_1"
+      },
+      "expected_version": "v1_f622ae3c2b87b535",
+      "identifiers": [
+        "2026hca18"
+      ],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What issue did the High Court address in Commissioner of Taxation v Bendel ([2026] HCA 18)?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0288",
+      "category": "authority_lookup",
+      "diagnostic_ranks": {
+        "dense": 223,
+        "exact": 102,
+        "lexical": 102
+      },
+      "document_ranks": {
+        "dense": 1,
+        "exact": 1,
+        "lexical": 1
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "eb9d8ceb0c72b556a19ddd5db2583be633cefb06f488c20ae8289d1cef084bc1",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 1357,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "para_1"
+          }
+        }
+      ],
+      "expected_document": "103bc158-cbd9-5a65-94d6-125e4fee7580",
+      "expected_document_chunks": 247,
+      "expected_locator": {
+        "char_end": 571,
+        "char_start": 0,
+        "section_id": "para_1"
+      },
+      "expected_version": "v1_87e5a235bc3eb36d",
+      "identifiers": [
+        "2025hca30"
+      ],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What issue did the High Court address in Commissioner of Taxation v PepsiCo Inc / Commissioner of Taxation v Stokely-Van Camp Inc ([2025] HCA 30)?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    },
+    {
+      "case_id": "au-tax-0290",
+      "category": "authority_lookup",
+      "diagnostic_ranks": {
+        "dense": null,
+        "exact": 86,
+        "lexical": 86
+      },
+      "document_ranks": {
+        "dense": 1,
+        "exact": 1,
+        "lexical": 1
+      },
+      "expected_chunks": [
+        {
+          "active": true,
+          "chunk_id": "a635a016ab04b277d8a9d00ffda13493205ed00d43971bdcf855211b755814b1",
+          "embedding_present": true,
+          "source_locator": {
+            "char_end": 1119,
+            "char_start": 0,
+            "locator_precision": "exact",
+            "section_id": "para_1"
+          }
+        }
+      ],
+      "expected_document": "5b5227f4-c8af-5834-9cbb-5bebf662e9ee",
+      "expected_document_chunks": 112,
+      "expected_locator": {
+        "char_end": 600,
+        "char_start": 0,
+        "section_id": "para_1"
+      },
+      "expected_version": "v1_3129a38e7e5045c0",
+      "identifiers": [
+        "2019hca36"
+      ],
+      "production_ranks": {
+        "dense": null,
+        "exact": null,
+        "fused": null,
+        "lexical": null
+      },
+      "question": "What issue did the High Court address in Commissioner of Taxation v Sharpcan Pty Ltd ([2019] HCA 36)?",
+      "settings": {
+        "dense_limit": 100,
+        "dense_weight": 1.0,
+        "exact_limit": 20,
+        "exact_weight": 2.0,
+        "hnsw_ef_search": 200,
+        "lexical_limit": 60,
+        "lexical_weight": 1.0,
+        "profile_id": "kanon2-768-v1",
+        "rrf_k": 60,
+        "version": "phase3-rrf-v2"
+      },
+      "unresolved_identifiers": []
+    }
+  ],
+  "created_at": "2026-09-26T05:28:47.972513+00:00",
+  "gold_sha256": "3d5c93e8d3e83aa935d7c40711b0f15a1236786f2466cfacbbd19a3eae4615aa",
+  "schema_version": "fintax-phase3-retrieval-failure-evidence-1.0"
+}

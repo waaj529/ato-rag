@@ -7,7 +7,9 @@ name = "fintaxgpt-rag"
 version = "0.1.0"
 description = "Structure-aware Australian tax and legal RAG pipeline"
 requires-python = ">=3.11"
+dependencies = ["psycopg[binary]>=3.3,<4", "pypdf>=6.7,<7", "httpx>=0.28,<1", "pydantic>=2.10,<3", "fastapi>=0.115,<1", "PyJWT[crypto]>=2.10,<3", "psycopg_pool>=3.3,<4", "uvicorn>=0.34,<1", "deepeval>=4.2,<5"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-
+pythonpath = ["."]
+addopts = "-p no:rerunfailures"

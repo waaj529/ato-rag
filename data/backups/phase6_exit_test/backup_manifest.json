@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-09-28T10:40:49.453324+00:00",
+  "tables": {
+    "customer_matters": {
+      "row_count": 5,
+      "sha256": "5b12e8ce5e3cf26b4206b4aed3acc334c4324b0df248ec3088dd761a83579d38",
+      "file": "customer_matters.json"
+    },
+    "matter_documents": {
+      "row_count": 5,
+      "sha256": "1b4ec6691d4a742e304273e0c42f1a901b05cc7cd81a2809c6cc71fa5bfb0651",
+      "file": "matter_documents.json"
+    },
+    "dead_letter_queue": {
+      "row_count": 2,
+      "sha256": "2ef508c5b7e424ffa97462096eabc4452cfbf0297adb5b5bbb90310da4dec01e",
+      "file": "dead_letter_queue.json"
+    }
+  }
+}

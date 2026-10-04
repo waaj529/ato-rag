@@ -6,6 +6,8 @@ import hashlib
 import json
 from pathlib import Path
 
+from .conflicts import conflict_report
+
 
 def _indexed_paths(source: Path) -> tuple[list[str], dict]:
     rows, primary_rows, paths = 0, 0, set()
@@ -31,6 +33,7 @@ def build_inventory(source: Path, required_schema: str) -> tuple[list[dict], dic
     entries, ids, corpora = [], set(), Counter()
     errors = Counter()
     document_bytes = 0
+    identities = []
     for relative in paths:
         path = source / relative
         if not path.is_file():
@@ -53,12 +56,14 @@ def build_inventory(source: Path, required_schema: str) -> tuple[list[dict], dic
         entries.append({"relative_path": relative, "document_id": document_id,
                         "version_id": version.get("version_id"),
                         "file_sha256": hashlib.sha256(raw).hexdigest()})
+        identities.append((record.get("source_url"), version.get("version_id"),
+                           version.get("content_sha256")))
         corpus = (record.get("classification") or {}).get("corpus", "unknown")
         corpora[corpus] += 1
     if errors:
         raise ValueError(f"indexed corpus validation failed: {dict(errors)}")
     disk_files = sum(1 for _ in (source / "documents").glob("*/*.json"))
-    audit = {**index_audit, "document_bytes": document_bytes,
+    audit = {**index_audit, **conflict_report(identities), "document_bytes": document_bytes,
              "by_corpus": dict(sorted(corpora.items())),
              "unindexed_document_files": disk_files - len(entries)}
     return entries, audit

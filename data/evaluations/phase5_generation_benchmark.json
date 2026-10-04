@@ -1,0 +1,27 @@
+{
+  "schema_version": "fintax-phase5-eval-1.0",
+  "created_at": "2026-09-27T08:43:23.822162+00:00",
+  "gold_sha256": "c148aca9600eaaa4748c90e091e3ca967eebed2a3a40668b703409ac90c884a8",
+  "cases_evaluated": 300,
+  "metrics": {
+    "cases_evaluated": 300,
+    "citation_resolvability_rate": 1.0,
+    "material_claim_citation_support_rate": 1.0,
+    "unsupported_claim_rate": 0.0,
+    "correct_jurisdiction_version_rate": 1.0,
+    "abstention_correctness": 1.0,
+    "mean_answer_completeness": 0.9517,
+    "mean_evidence_support": 1.0,
+    "mean_jev_judge_score": 0.9855,
+    "repair_invocation_rate": 0.0
+  },
+  "timing_and_cost": {
+    "p50_latency_ms": 214.52,
+    "p95_latency_ms": 1325.37,
+    "mean_latency_ms": 388.09,
+    "total_generation_calls": 300,
+    "total_judge_calls": 300,
+    "total_cost_usd": 0.4369,
+    "avg_cost_per_query_usd": 0.001456
+  }
+}

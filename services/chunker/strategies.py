@@ -41,6 +41,8 @@ def _narrative_segments(text: str) -> Iterator[tuple[str, int, int]]:
 def narrative_blocks(document: dict[str, Any]) -> Iterator[SourceBlock]:
     for section in document.get("sections") or []:
         raw_text = str(section.get("text") or "")
+        if raw_text.lstrip().startswith("{\\rtf"):
+            continue
         path = [str(item) for item in (section.get("heading_path") or []) if item]
         if not path and section.get("heading"):
             path = [str(section["heading"])]

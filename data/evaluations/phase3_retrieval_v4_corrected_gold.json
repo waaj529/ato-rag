@@ -1,0 +1,102 @@
+{
+  "abstention_accuracy": 1.0,
+  "abstention_cases": 10,
+  "cases": 300,
+  "created_at": "2026-09-26T05:57:35.973130+00:00",
+  "failures": [
+    {
+      "id": "au-tax-0008",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0009",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0012",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0013",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0018",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0032",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0035",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0039",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0042",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0049",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0054",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0056",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0057",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0058",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0061",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0155",
+      "route": "hybrid"
+    },
+    {
+      "id": "au-tax-0264",
+      "route": "hybrid"
+    }
+  ],
+  "gold_sha256": "c148aca9600eaaa4748c90e091e3ca967eebed2a3a40668b703409ac90c884a8",
+  "latency_ms": {
+    "mean": 154.71811097027967,
+    "p50": 76.47290999011602,
+    "p95": 684.6353680011816
+  },
+  "new_query_embeddings": 0,
+  "overall": {
+    "recall_at_1": 0.47,
+    "recall_at_10": 0.7666666666666667,
+    "recall_at_100": 0.9433333333333334,
+    "recall_at_20": 0.8466666666666667,
+    "recall_at_5": 0.6566666666666666,
+    "recall_at_60": 0.92
+  },
+  "positive": {
+    "recall_at_1": 0.4517241379310345,
+    "recall_at_10": 0.7586206896551724,
+    "recall_at_100": 0.9413793103448276,
+    "recall_at_20": 0.8413793103448276,
+    "recall_at_5": 0.6448275862068965,
+    "recall_at_60": 0.9172413793103448
+  },
+  "positive_cases": 290,
+  "schema_version": "fintax-phase3-retrieval-eval-1.0",
+  "settings_version": "phase3-rrf-v4"
+}

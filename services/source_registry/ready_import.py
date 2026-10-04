@@ -27,6 +27,15 @@ def import_corpus(source: Path, config: dict, inventory_path: Path) -> dict:
     if verification.get(flag) is not True:
         raise ValueError(f"source verification flag {flag!r} is not true")
     entries, audit = build_inventory(source, config["required_schema"])
+    blockers = []
+    if audit["unindexed_document_files"]:
+        blockers.append(f"{audit['unindexed_document_files']} document files are not listed "
+                        "in any index")
+    if audit["conflicting_source_urls"]:
+        blockers.append(f"{audit['conflicting_source_urls']} source URLs are indexed under "
+                        "versions that disagree about their content")
+    if blockers:
+        raise ValueError("import refused: " + "; ".join(blockers))
     write_inventory(inventory_path, entries)
     summary = json.loads(summary_path.read_text()) if summary_path.exists() else {}
     return {

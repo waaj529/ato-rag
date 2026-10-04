@@ -1,0 +1,57 @@
+{
+  "abstention_accuracy": {
+    "baseline": 1.0,
+    "candidate": 1.0
+  },
+  "baseline_failures": 31,
+  "baseline_settings_version": "phase3-rrf-v2",
+  "candidate_failures": 22,
+  "candidate_settings_version": "phase3-rrf-v4",
+  "failure_delta": -9,
+  "gold_sha256": "3d5c93e8d3e83aa935d7c40711b0f15a1236786f2466cfacbbd19a3eae4615aa",
+  "latency_ms": {
+    "p50": {
+      "baseline": 36.379290992044844,
+      "candidate": 67.16952900751494,
+      "delta": 30.790238015470095
+    },
+    "p95": {
+      "baseline": 617.5398769992171,
+      "candidate": 609.3575329869054,
+      "delta": -8.18234401231166
+    }
+  },
+  "recall": {
+    "recall_at_1": {
+      "baseline": 0.45,
+      "candidate": 0.46,
+      "delta": 0.010000000000000009
+    },
+    "recall_at_10": {
+      "baseline": 0.75,
+      "candidate": 0.7566666666666667,
+      "delta": 0.00666666666666671
+    },
+    "recall_at_100": {
+      "baseline": 0.8966666666666666,
+      "candidate": 0.9266666666666666,
+      "delta": 0.030000000000000027
+    },
+    "recall_at_20": {
+      "baseline": 0.8066666666666666,
+      "candidate": 0.8333333333333334,
+      "delta": 0.026666666666666727
+    },
+    "recall_at_5": {
+      "baseline": 0.65,
+      "candidate": 0.6466666666666666,
+      "delta": -0.0033333333333334103
+    },
+    "recall_at_60": {
+      "baseline": 0.87,
+      "candidate": 0.9066666666666666,
+      "delta": 0.036666666666666625
+    }
+  },
+  "schema_version": "fintax-phase3-retrieval-comparison-1.0"
+}

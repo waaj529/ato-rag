@@ -1,0 +1,23 @@
+{
+  "schema_version": "fintax-phase6-baseline-lock-1.0",
+  "status": "complete_frozen",
+  "frozen_at": "2026-09-28T12:55:00+05:00",
+  "verification_script": "scripts/verify_phase6_exit.py",
+  "verification_script_sha256": "973313d7cea18ecc59e07f395927210964b80639931b9127513c9524df989728",
+  "migration": "migrations/0006_phase6_security_rls.sql",
+  "security_controls": {
+    "zero_cross_tenant_retrieval": true,
+    "fail_closed_missing_permission_scope": true,
+    "pooled_connection_rls_isolation": true,
+    "prompt_injection_defense": true,
+    "untrusted_evidence_wrapping": true,
+    "circuit_breaker_outage_degradation": true,
+    "bounded_jittered_retries": true,
+    "sliding_window_rate_limits": true,
+    "tenant_spend_budget_limits": true,
+    "dlq_durable_replay": true,
+    "backup_integrity_and_restore": true,
+    "confidential_telemetry_redaction": true
+  },
+  "notes": "Phase 6 security, isolation, privacy, fault tolerance and operational controls complete and frozen. Phase 7 controlled pilot preserves this baseline unchanged."
+}

@@ -3,7 +3,7 @@
 from dataclasses import dataclass
 
 
-CHUNKER_VERSION = "legal-structure-v2"
+CHUNKER_VERSION = "legal-structure-v3"
 TOKENIZER_VERSION = "unicode-lexical-v1"
 
 

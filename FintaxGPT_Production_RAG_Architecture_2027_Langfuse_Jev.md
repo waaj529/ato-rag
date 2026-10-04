@@ -3,10 +3,13 @@
 **Status:** Recommended production architecture  
 **Primary market:** Australia  
 **Prepared:** 19 September 2026  
+**Architecture revision:** 26 September 2026 — Jev decision layer + Langfuse end-to-end AI tracing  
 **Target:** Production rollout through 2027  
 **Embedding model:** Isaacus `kanon-2-embedder`  
 **Recommended embedding profile:** `kanon-2-embedder`, `dimensions=768`, `task=retrieval/document|retrieval/query`  
-**Recommended reranker:** Isaacus `kanon-2-reranker`  
+**Reranking strategy:** pluggable decision reranking; benchmark Jev relevance scoring against the frozen hybrid baseline, with Isaacus `kanon-2-reranker` retained as challenger/fallback  
+**Judge strategy:** Jev for typed probabilistic quality/evidence judgments; deterministic legal/citation validators remain authoritative  
+**AI observability:** Langfuse v4 via OpenTelemetry/OTLP for every backend model/provider call  
 
 > This is an engineering architecture, not legal advice. Australian legislation, tax administration material, privacy requirements, court protocols, provider terms and professional guidance can change. The production system must therefore treat freshness, point-in-time validity and source provenance as first-class data rather than documentation notes.
 
@@ -31,17 +34,36 @@ The production architecture should have two independently deployable planes:
 | Lexical retrieval | PostgreSQL FTS initially | Lowest infrastructure cost; exact identifiers get dedicated indexes |
 | True BM25 upgrade | Qdrant/OpenSearch/production BM25 extension only if evals justify it | Do not add infrastructure before measured need |
 | Embeddings | Kanon 2 Embedder at **768 dimensions** | Strong legal retrieval; materially lower storage than 1,792 dimensions |
-| Reranking | Kanon 2 Reranker | Legal-specific second-stage ranking at low per-token cost |
+| Reranking | **Pluggable reranker**: Jev decision scoring first benchmark; Kanon 2 Reranker retained as challenger/fallback | Lets the measured Australian benchmark decide the production reranker instead of hard-wiring one provider |
+| Judge / online evaluation | **Jev typed decision model** | Fast structured judgments for relevance, evidence adequacy, citation support and answer completeness; never replaces deterministic legal validation |
 | Raw artifacts | S3-compatible object storage | Immutable, cheap, reproducible source snapshots |
 | Cache | Redis | Shared short-lived cache/rate limits; never canonical data |
 | Durable jobs | Managed queue (SQS/Pub/Sub/Service Bus) or durable Postgres job queue | Retries/DLQ without relying on API process memory |
-| Observability | OpenTelemetry + Prometheus/Grafana + Sentry (or equivalents) | Vendor-neutral traces, metrics and errors |
+| AI observability | **Langfuse v4 + OpenTelemetry/OTLP** | One trace shows retrieval, every model call, model name/version, inputs/outputs where policy allows, latency, tokens, cost, scores and errors |
+| Infrastructure observability | Prometheus/Grafana + Sentry (or equivalents) | System metrics, dashboards and application errors remain separate from AI trace semantics |
 | Deployment | Docker + managed container service + Terraform | Production reliability without Kubernetes overhead |
 | Secrets | Cloud secret manager/KMS | No secrets in repo/env files in production |
 
 ### Technologies deliberately **not** required at launch
 
 Do **not** start with Kafka, Kubernetes, Elasticsearch/OpenSearch, Neo4j, a full GraphRAG stack, multi-agent orchestration or an LLM for every ingestion step. They add cost and failure modes before the core retrieval benchmark proves they are necessary.
+
+### Cross-cutting model-call visibility rule
+
+No production model/provider SDK call may be made directly from business logic. Embeddings, rerankers, decision models/judges and generation models must be called through typed provider adapters that emit a Langfuse/OpenTelemetry observation.
+
+This is a hard architecture rule so an operator can open one Langfuse trace and answer:
+
+- which model/provider was called;
+- why it was called and for which task;
+- the exact model/revision and configuration;
+- latency, retries, token counts and estimated/actual cost;
+- prompt/template/config version where applicable;
+- input/output or redacted hashes according to data classification;
+- the parent retrieval/generation step that caused the call;
+- whether the call succeeded, failed, timed out or was served from cache.
+
+CI should reject direct imports/use of provider SDK clients outside approved provider-adapter modules.
 
 ---
 
@@ -135,11 +157,17 @@ flowchart LR
       QP[Query + Temporal Resolver]
       RET[Hybrid Candidate Retrieval]
       FUSE[RRF / Candidate Fusion]
-      RERANK[Kanon 2 Reranker]
+      RERANK[Pluggable Reranker<br/>Jev / Kanon 2]
       CTX[Evidence Context Builder]
       LLM[Generation Model Router]
-      VERIFY[Claim/Citation Validator]
+      JUDGE[Jev Decision Judge]
+      VERIFY[Deterministic Claim/Citation Validator]
       RESP[Auditable Response]
+    end
+
+    subgraph OBS[AI Observability]
+      OTEL[OpenTelemetry / OTLP]
+      LF[Langfuse v4<br/>Traces + Scores + Evals]
     end
 
     SOURCES --> REGISTRY --> CRAWL --> RAW --> PARSE --> VERSION --> CHUNK --> EMBED --> PG
@@ -150,12 +178,23 @@ flowchart LR
     API --> QP --> RET
     PG --> RET
     LEX --> RET
-    RET --> FUSE --> RERANK --> CTX --> LLM --> VERIFY --> RESP
+    RET --> FUSE --> RERANK --> CTX --> LLM --> JUDGE --> VERIFY --> RESP
+
+    API -. trace .-> OTEL
+    EMBED -. model call .-> OTEL
+    RET -. retrieval spans .-> OTEL
+    RERANK -. model call .-> OTEL
+    LLM -. model call .-> OTEL
+    JUDGE -. model call .-> OTEL
+    VERIFY -. validation span .-> OTEL
+    OTEL --> LF
 ```
 
 ### Hard architectural rule
 
 The **LLM is not the source of truth**. The evidence package produced by the knowledge/retrieval system is the permitted factual basis for the legal/tax answer.
+
+Jev scores are also **not legal truth**. They are machine decisions used for ranking, routing and evaluation. Deterministic source/version/citation checks remain the hard safety boundary.
 
 ---
 
@@ -182,18 +221,19 @@ fintax-rag/
 │   ├── embedding/                   # Kanon 2 API/self-host adapter
 │   ├── indexing/                    # pgvector + lexical index publication
 │   ├── retrieval/                   # exact + dense + lexical + RRF
-│   ├── reranking/                   # Kanon 2 reranker adapter
+│   ├── reranking/                   # provider-neutral reranker interface + Jev/Kanon adapters
 │   ├── context_builder/             # parent expansion + token budgets
 │   ├── generation/                  # LLM router/prompts/structured output
-│   ├── verification/                # citation + claim checks
-│   └── evaluation/                  # offline/online eval harness
+│   ├── judging/                     # Jev typed judge / evidence-adequacy decisions
+│   ├── verification/                # deterministic citation + claim checks
+│   └── evaluation/                  # offline/online eval harness + Langfuse scores
 │
 ├── packages/
 │   ├── domain/                      # typed domain entities
 │   ├── db/                          # SQLAlchemy/psycopg models/migrations
 │   ├── contracts/                   # API/retrieval schemas
 │   ├── security/                    # authorization, sanitization, redaction
-│   ├── telemetry/                   # OpenTelemetry/logging helpers
+│   ├── telemetry/                   # OpenTelemetry + Langfuse tracing/model-call helpers
 │   └── config/                      # validated configuration
 │
 ├── workers/
@@ -867,33 +907,62 @@ Do not let a generic relevance score cause an unofficial commentary page to disp
 
 ## 16. Reranking
 
-Rerank the fused candidate set with `kanon-2-reranker`.
+Reranking is provider-neutral. **Do not replace first-stage retrieval with Jev.** Exact identifier retrieval, PostgreSQL FTS, Kanon 2 dense search and RRF remain responsible for candidate recall.
 
-Recommended starting flow:
+The reranker receives a bounded fused candidate set and produces relevance decisions/scores. For the next implementation step, benchmark **Jev relevance scoring** against the frozen Phase 3 baseline. Retain `kanon-2-reranker` as a challenger/fallback until the Australian benchmark establishes which model gives the best quality/latency/cost trade-off.
+
+### Recommended flow
 
 ```text
 ~80–120 fused child candidates
   -> dedupe exact/near-duplicates
-  -> rerank top ~60–80
+  -> rerank top ~60–100
+       -> Jev relevance / answer-bearing / authority-fit decisions
+       -> or Kanon 2 reranker
   -> keep top ~12–20 children
   -> expand to parents
   -> evidence diversity/deduplication
   -> final 6–10 evidence units
 ```
 
-The precise numbers must be driven by NDCG/Recall and cost tests.
+Jev may emit typed signals such as:
 
-### Cost formula
-
-Isaacus currently prices the reranker at US$0.35/M input tokens.
-
-```text
-rerank_cost_per_query = reranker_input_tokens / 1,000,000 * 0.35
+```json
+{
+  "relevant": 0.97,
+  "answer_bearing": 0.93,
+  "authority_fit": 0.99,
+  "temporal_fit": 0.91
+}
 ```
 
-Example: 15,000 reranker input tokens is roughly US$0.00525 before taxes/price changes.
+Treat these as ranking features, not legal conclusions. Exact-citation resolution, document/version validity and permission filters remain deterministic.
 
-Reranking a bounded candidate set is therefore generally a better legal-quality investment than sending dozens of noisy chunks to a more expensive generation model.
+### Reranker contract
+
+```python
+class RerankerProvider(Protocol):
+    async def score(
+        self,
+        query: str,
+        candidates: list[RetrievalCandidate],
+        context: RerankContext,
+    ) -> list[RerankDecision]: ...
+```
+
+Every reranker call must create a Langfuse model observation containing:
+
+- `provider`, `model`, `model_revision`, `task="rerank"`;
+- candidate count and candidate IDs;
+- retrieval config version and corpus revision;
+- latency, retries, token usage and cost;
+- per-candidate scores/typed decisions;
+- whether the result came from Jev, Kanon or a fallback path.
+
+### Acceptance rule
+
+Preserve the frozen hybrid retrieval baseline. A reranker is adopted only if it improves NDCG/early-rank evidence quality or context-evidence retention without unacceptable latency/cost or regressions on exact-citation cases.
+
 
 ---
 
@@ -956,6 +1025,31 @@ class GenerationProvider(Protocol):
 ```
 
 Pin provider/model versions and keep prompts versioned. Never auto-upgrade a model in production without regression evals.
+
+### Model-call tracing contract
+
+Every generation call is a Langfuse model observation nested beneath the request trace. Record at least:
+
+```text
+trace_id
+model_call_id
+role = generation
+provider
+model
+model_revision
+route_reason
+prompt_version
+retrieval_config_version
+corpus_revision
+input_tokens
+output_tokens
+cached_tokens (when available)
+latency_ms
+cost
+status / error
+```
+
+For `PUBLIC_OFFICIAL` development/evaluation traffic, full model input/output may be retained when policy allows it. For private/client matters, tracing remains complete but content capture defaults to redacted/metadata-only according to Section 26.
 
 ### Cost-aware model routing
 
@@ -1059,7 +1153,8 @@ Never show a fabricated numeric “confidence = 93%” from the LLM. Use evidenc
 
 ```mermaid
 flowchart LR
-  D[Draft structured answer] --> S[Schema validation]
+  D[Draft structured answer] --> JJ[Jev typed quality/evidence judge]
+  JJ --> S[Schema validation]
   S --> C[Claim-to-evidence coverage]
   C --> J[Jurisdiction check]
   J --> T[Temporal/version check]
@@ -1068,6 +1163,20 @@ flowchart LR
   P -->|pass| R[Return answer]
   P -->|fail| F[Repair once or abstain]
 ```
+
+### Jev judge role
+
+Jev may score or classify:
+
+- whether the answer addresses the question;
+- whether each material claim appears supported by supplied evidence;
+- completeness of the evidence package;
+- likely contradiction or unsupported-claim risk;
+- whether the request appears out of scope or needs clarification.
+
+These judgments are recorded in Langfuse as scores/observations and are useful for online monitoring and offline evaluation. They **must not override deterministic failures** such as a nonexistent citation, wrong document version, failed permission check or unresolved locator.
+
+A high Jev score can never convert a failed deterministic validator into a passing answer.
 
 ### Repair policy
 
@@ -1300,26 +1409,124 @@ The product UI should make it easy for a professional to inspect the exact sourc
 
 ---
 
-## 27. Observability
+## 27. Observability — Langfuse-first AI tracing + OpenTelemetry
 
 Instrument the whole request with one `trace_id`.
 
+**Langfuse is the primary AI/model observability UI.** OpenTelemetry/OTLP is the transport and interoperability layer. Prometheus/Grafana remain the infrastructure metrics system; Sentry (or equivalent) remains the application-error system.
+
+For a 2027 deployment, use Langfuse's OpenTelemetry/OTLP ingestion path rather than building on the legacy ingestion API.
+
+### Hard requirement: no invisible model calls
+
+Every call to an embedding model, reranker, decision model/judge or generation model must appear as a child observation in Langfuse.
+
+Provider adapters are the only modules allowed to call external model SDKs. Business logic calls provider interfaces, never provider SDKs directly.
+
+A representative answer trace should look like:
+
+```text
+answer_request
+├── query_parse                         [span; deterministic]
+├── retrieve_context                    [retriever/span]
+│   ├── exact_identifier_search         [retriever]
+│   ├── lexical_search                  [retriever]
+│   ├── query_embedding                 [MODEL: kanon-2-embedder]
+│   ├── dense_hnsw_search               [retriever]
+│   └── rrf_fusion                      [span; deterministic]
+├── rerank_candidates                   [MODEL: Jev or kanon-2-reranker]
+├── parent_expansion                    [span]
+├── context_build                       [span]
+├── generate_answer                     [MODEL: selected generation model]
+├── judge_answer                        [MODEL: Jev]
+├── citation_validation                 [span; deterministic]
+├── optional_repair                     [MODEL: generation model, only when invoked]
+└── response                            [span]
+```
+
+Background model work is traced separately:
+
+```text
+embedding_batch
+└── document_embedding                  [MODEL: kanon-2-embedder]
+
+offline_eval_case
+├── retrieval / rerank
+├── generation                          [when evaluated]
+└── judge                               [MODEL: Jev or configured evaluator]
+```
+
+### Required metadata for every model observation
+
+Record:
+
+```text
+trace_id
+model_call_id
+parent_observation_id
+environment
+service
+operation / task
+provider
+model
+model_revision
+deployment/profile
+prompt_or_schema_version
+retrieval_config_version
+corpus_revision
+embedding_profile_id (when relevant)
+candidate_count (rerank)
+input_tokens
+output_tokens
+cached_tokens (when provider exposes them)
+latency_ms
+retry_count
+provider_request_id
+cost
+status
+error_type
+cache_hit
+```
+
+For typed decision models, also record the returned decision schema and probabilities/scores.
+
+For retrieval observations, record query, candidate IDs/ranks, filters and timing according to data-classification policy.
+
+### Input/output visibility and privacy
+
+"I can see every model call" does **not** mean "store every confidential byte forever."
+
+Use classification-aware trace capture:
+
+- `PUBLIC_OFFICIAL`, dev/staging: full prompts, retrieved evidence and outputs may be captured for debugging/evals when configured.
+- `PUBLIC_SECONDARY`: same only if licensing/policy permits.
+- `CUSTOMER_CONFIDENTIAL`, `PERSONAL_INFORMATION`, `SENSITIVE_INFORMATION`, `PRIVILEGED_OR_RESTRICTED`: default to metadata, hashes, IDs and redacted/sampled content unless an approved policy explicitly permits more.
+
+The trace must still show that a model call happened even when its content is redacted.
+
+### Trace identity
+
+Use one canonical W3C/OpenTelemetry trace context. Store the trace ID in `query_audits` and return an opaque `trace_id` in the internal/API response contract. Internal admin tooling may deep-link that ID to Langfuse.
+
 ### Traces
 
-Record component timings and IDs, not unrestricted confidential contents:
+Minimum application observations:
 
 ```text
 query_parse
 permission_filter
 exact_retrieval
 lexical_retrieval
+query_embedding
 dense_retrieval
 rrf_fusion
 rerank
 parent_expansion
 context_build
 generation
+jev_judge
 citation_validation
+repair_if_any
 response
 ```
 
@@ -1338,13 +1545,17 @@ response
 - index publication lag;
 - orphaned/unindexed chunks.
 
-#### Query plane
+#### Query/model plane
 
 - p50/p95/p99 retrieval latency;
 - dense/lexical/exact candidate counts;
-- reranker token usage/latency;
+- model-call count per request;
+- model route distribution;
+- query-embedding latency/cost;
+- reranker model, token usage, latency and cost;
+- Jev judge latency and decision distribution;
+- generation model input/output tokens, latency and cost;
 - context tokens;
-- LLM input/output tokens and cost;
 - citation validation failure rate;
 - abstention rate;
 - cache hit rate;
@@ -1353,13 +1564,28 @@ response
 
 #### Quality
 
-- Recall@10/20/50;
+- Recall@10/20/50/100;
 - MRR/NDCG@10;
 - correct-version retrieval rate;
+- reranker uplift versus frozen hybrid baseline;
+- context-evidence retention;
 - claim support rate;
 - citation correctness;
+- Jev judge/evaluator score distributions;
+- disagreement between Jev judgments and deterministic validators;
 - unanswerable-question false-answer rate;
 - user-flagged answer rate.
+
+### Langfuse datasets and evaluators
+
+Use the existing Australian gold set as a Langfuse dataset or synchronized evaluation dataset so retrieval/reranking/generation revisions can be compared by trace/config version.
+
+Jev may be used as a low-cost typed evaluator for high-volume quality signals, but:
+
+- deterministic retrieval and citation metrics remain separate;
+- human labels remain the reference where available;
+- an aggregate judge score must never hide a retrieval regression;
+- production adoption of a new model still requires benchmark evidence.
 
 ### Alerts
 
@@ -1370,9 +1596,13 @@ Alert on symptoms that threaten trust, not every transient error:
 - sudden parse-quality drop;
 - retrieval regression canary failure;
 - citation resolver failures;
+- deterministic validator/Jev disagreement spike;
+- missing expected model observations in traces;
+- model/provider route unexpectedly changes;
 - cross-tenant authorization failure;
 - provider cost spike;
 - sustained latency/error-rate SLO breach.
+
 
 ---
 
@@ -1434,6 +1664,8 @@ These are engineering starting targets and should be calibrated to the final cor
 | Stale-version answer when date was explicit | near zero / release blocking |
 
 Do not let a high end-to-end “LLM judge” score hide poor retrieval. Store retrieval metrics independently.
+
+Langfuse is the comparison surface for online/offline traces and evaluator scores. Jev scores are useful secondary signals for relevance, support and completeness, but release decisions must still include deterministic retrieval, version, citation and security metrics.
 
 ### Regression matrix
 
@@ -1577,11 +1809,17 @@ flowchart TB
     W2 --> PG
     W2 --> EXT
 
-    API1 --> OTEL[OTel Collector]
+    API1 --> OTEL[OTel Collector / OTLP]
     API2 --> OTEL
     W1 --> OTEL
     W2 --> OTEL
-    OTEL --> OBS[Metrics / Traces / Errors]
+
+    OTEL --> LF[Langfuse v4<br/>AI traces / model calls / scores]
+    OTEL --> METRICS[Prometheus / Grafana]
+    API1 --> ERR[Sentry / Error Tracking]
+    API2 --> ERR
+    W1 --> ERR
+    W2 --> ERR
 ```
 
 ### Do not use Kubernetes by default
@@ -1640,6 +1878,8 @@ Response:
   "corpus_revision": "2027-03-01T05:00Z_abc123",
   "trace_id": "..."
 }
+
+`trace_id` is the canonical OpenTelemetry/Langfuse trace identifier (or a stable application mapping to it) used by internal operators to inspect the complete backend execution, including every model call.
 ```
 
 ### Health endpoints
@@ -1861,23 +2101,23 @@ Deliver 768-dimensional embeddings, HNSW, exact identifiers, lexical retrieval, 
 
 Exit: Recall@K target reached on the gold set.
 
-### Phase 4 — Kanon reranking + context builder
+### Phase 4 — decision reranking + context builder
 
-Deliver reranker, dedupe, parent expansion and token budgeting.
+Deliver the provider-neutral reranker contract, Jev reranking experiment, Kanon 2 challenger/fallback, dedupe, parent expansion and token budgeting. Instrument every reranker/model call in Langfuse.
 
-Exit: NDCG/context-evidence retention improves without unacceptable cost/latency.
+Exit: NDCG/early-rank evidence quality and context-evidence retention improve over the frozen Phase 3 baseline without unacceptable latency/cost. Adopt Jev or Kanon based on benchmark evidence rather than architecture preference.
 
-### Phase 5 — grounded generation + citations
+### Phase 5 — grounded generation + citations + Jev judge
 
-Deliver structured claims, deterministic citations and fail-closed verification.
+Deliver structured claims, deterministic citations, Jev typed quality/evidence judgments and fail-closed verification. Every generation, judge and optional repair call is visible in Langfuse.
 
-Exit: citation correctness/unsupported-claim gates pass.
+Exit: citation correctness/unsupported-claim gates pass; Jev is calibrated as an evaluation/monitoring signal and does not override deterministic validators.
 
 ### Phase 6 — security/ops
 
-Deliver ACL/RLS, privacy policy enforcement, observability, backups, DLQ, rate limits and incident runbooks.
+Deliver ACL/RLS, privacy policy enforcement, Langfuse/OpenTelemetry production observability, trace-retention/redaction policy, backups, DLQ, rate limits and incident runbooks.
 
-Exit: security, restore and chaos/failure tests pass.
+Exit: security, restore and chaos/failure tests pass, and trace-completeness tests confirm that every backend model/provider call is observable without violating data-classification policy.
 
 ### Phase 7 — professional pilot
 
@@ -2122,3 +2362,25 @@ For a cost-effective Australian tax/legal RAG entering 2027, the best default ar
 Spend engineering effort first on **source coverage, version correctness, parsing, retrieval evaluation and citations**. Only add dedicated search clusters, graph databases, multimodal indexing or agentic workflows when the benchmark proves that the simpler architecture cannot meet a defined quality or scale requirement.
 
 That design remains economical now, while preserving clean migration paths for much larger 2027 corpora and stricter professional/privacy requirements.
+
+
+---
+
+## 42. 26 September 2026 architecture amendment — Jev + Langfuse
+
+This amendment clarifies the production model-control and observability strategy.
+
+### Decision
+
+1. **Retrieval stays deterministic/hybrid.** Jev does not replace exact identifier retrieval, PostgreSQL FTS, Kanon embeddings/HNSW or RRF.
+2. **Reranking becomes provider-neutral.** Jev is the first decision-reranking experiment; Kanon 2 remains an approved challenger/fallback until benchmark results select the production path.
+3. **Jev is added as a post-generation judge/evaluator.** It may score relevance, support, completeness and evidence adequacy, but deterministic legal/citation/version validators remain authoritative.
+4. **Langfuse becomes the AI observability surface.** OpenTelemetry/OTLP carries traces; Prometheus/Grafana and Sentry continue to handle infrastructure metrics and application errors.
+5. **Every model call must be visible.** Embeddings, rerankers, judges, generation and repair calls must appear in the same trace tree with provider/model/config/latency/token/cost metadata.
+6. **Trace content is classification-aware.** Full visibility of the call graph is mandatory; full prompt/document content is not mandatory when privacy or privilege requires redaction.
+
+### Why this amendment exists
+
+The goal is to remove the backend black box. When an answer is poor, an operator should be able to open one Langfuse trace and determine whether the failure originated in query interpretation, retrieval, query embedding, candidate fusion, reranking, context construction, generation, judge scoring or deterministic citation validation.
+
+This amendment does not create a new numbered implementation phase. It is a cross-cutting requirement applied to Phase 4 onward and retrofitted to existing Phase 3 query-time model calls.

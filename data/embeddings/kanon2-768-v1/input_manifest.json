@@ -1,0 +1,24 @@
+{
+  "chunk_roots": [
+    "/Users/mac/fintaxgpt-rag/data/chunks/ato_ready",
+    "/Users/mac/fintaxgpt-rag/data/chunks/court_ready"
+  ],
+  "corpus_revision_sha256": "28532a0edd81b1d3f475009fa070aa10c2224111fe6c0dc6610d433c08788f40",
+  "created_at": "2026-09-25T07:40:32.819397+00:00",
+  "input_count": 515290,
+  "input_utf8_bytes": 618963709,
+  "profile": {
+    "dimensions": 768,
+    "document_task": "retrieval/document",
+    "model": "kanon-2-embedder",
+    "normalization": "l2_normalized_verified_2026-09-24",
+    "overflow_strategy": null,
+    "profile_id": "kanon2-768-v1",
+    "provider": "isaacus",
+    "query_task": "retrieval/query",
+    "status": "provisional"
+  },
+  "provider_calls_made": 0,
+  "request_batches_at_128": 4026,
+  "schema_version": "fintax-embedding-input-manifest-1.0"
+}

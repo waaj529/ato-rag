@@ -1,0 +1,13 @@
+{
+  "schema_version": "fintax-domain-review-governance-1.0",
+  "status": "waived",
+  "gold_sha256": "c148aca9600eaaa4748c90e091e3ca967eebed2a3a40668b703409ac90c884a8",
+  "reviewer_name": null,
+  "reviewer_qualification": null,
+  "approved_at": null,
+  "waiver_authority": "project_owner",
+  "waiver_reason": "Qualified reviewer unavailable; formal external review deferred.",
+  "waived_at": "2026-09-26T11:06:24+05:00",
+  "architecture_revision": "2026-09-26-domain-review-waiver-1",
+  "notes": "Technical benchmark verification passed. Qualified professional review was not performed, and the benchmark must not be described as professionally reviewed."
+}

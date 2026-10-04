@@ -1,0 +1,13 @@
+{
+  "schema_version": "fintax-phase4-e2e-eval-1.0",
+  "created_at": "2026-09-28T07:49:19.728751+00:00",
+  "cases_evaluated": 30,
+  "context_hit_rate": 0.3667,
+  "total_traces_collected": 30,
+  "total_model_observations": 60,
+  "embedding_observations": 30,
+  "reranking_observations": 30,
+  "avg_context_tokens": 2169.6,
+  "latency_p50_ms": 67.68,
+  "passed": true
+}

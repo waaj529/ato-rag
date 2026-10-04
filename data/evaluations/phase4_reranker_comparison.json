@@ -1,0 +1,81 @@
+{
+  "schema_version": "fintax-phase4-reranker-eval-1.0",
+  "created_at": "2026-09-26T08:39:48.270719+00:00",
+  "gold_sha256": "c148aca9600eaaa4748c90e091e3ca967eebed2a3a40668b703409ac90c884a8",
+  "cases_evaluated": 300,
+  "phase3_retrieval_baseline": {
+    "mrr": 0.564,
+    "ndcg_at_20": 0.6953,
+    "recall_at_20": 0.8467,
+    "recall_at_80": 0.93
+  },
+  "jev_decision_reranker": {
+    "mrr": 0.3705,
+    "ndcg_at_5": 0.6778,
+    "ndcg_at_10": 0.7083,
+    "ndcg_at_20": 0.7328,
+    "recall_at_5": 0.5267,
+    "recall_at_10": 0.62,
+    "recall_at_20": 0.7167,
+    "recall_at_50": 0.7167,
+    "evidence_retention_rate": 0.7706,
+    "latency_ms": {
+      "mean": 12.19,
+      "p50": 12.23,
+      "p95": 21.18
+    },
+    "avg_tokens_per_query": 15132.3,
+    "total_tokens": 4539691,
+    "avg_cost_per_query": 0.003026,
+    "total_cost": 0.9079
+  },
+  "kanon_2_reranker": {
+    "mrr": 0.5092,
+    "ndcg_at_5": 0.8033,
+    "ndcg_at_10": 0.8239,
+    "ndcg_at_20": 0.8379,
+    "recall_at_5": 0.6033,
+    "recall_at_10": 0.6667,
+    "recall_at_20": 0.72,
+    "recall_at_50": 0.72,
+    "evidence_retention_rate": 0.7742,
+    "latency_ms": {
+      "mean": 1.54,
+      "p50": 1.51,
+      "p95": 2.57
+    },
+    "avg_tokens_per_query": 24901.9,
+    "total_tokens": 7470556,
+    "avg_cost_per_query": 0.008716,
+    "total_cost": 2.6147
+  },
+  "comparison": {
+    "jev_wins": 10,
+    "kanon_wins": 11,
+    "recoveries_by_jev": [
+      "au-tax-0200",
+      "au-tax-0209",
+      "au-tax-0230",
+      "au-tax-0243",
+      "au-tax-0250",
+      "au-tax-0257",
+      "au-tax-0283",
+      "au-tax-0286",
+      "au-tax-0287",
+      "au-tax-0290"
+    ],
+    "regressions_by_jev": [
+      "au-tax-0005",
+      "au-tax-0015",
+      "au-tax-0024",
+      "au-tax-0105",
+      "au-tax-0180",
+      "au-tax-0201",
+      "au-tax-0218",
+      "au-tax-0256",
+      "au-tax-0258",
+      "au-tax-0269",
+      "au-tax-0271"
+    ]
+  }
+}
