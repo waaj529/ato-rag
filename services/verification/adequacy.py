@@ -47,10 +47,20 @@ class EvidenceAdequacyController:
         # Check explicit requested identifiers (e.g. TR 9999/99 or specific section)
         q_ids = extract_identifiers(clean_q)
         if q_ids:
-            ev_id_text = " ".join(normalize_identifier(u.citation_label or u.title or "") for u in context.evidence)
-            missing = [qid for qid in q_ids if qid not in ev_id_text]
-            if len(missing) == len(q_ids):
-                return AdequacyStatus.INADEQUATE, [f"IDENTIFIER_NOT_FOUND: Legal authority '{q_ids[0]}' absent from evidence."]
+            ev_ids = {
+                qid
+                for u in context.evidence
+                for text in (
+                    u.citation_label,
+                    u.title,
+                    str(u.parent_locator.get("section_id") if u.parent_locator else ""),
+                )
+                if text
+                for qid in (normalize_identifier(text), *extract_identifiers(text))
+            }
+            missing = [qid for qid in q_ids if qid not in ev_ids]
+            if missing:
+                return AdequacyStatus.INADEQUATE, [f"IDENTIFIER_NOT_FOUND: Legal authority '{missing[0]}' absent from evidence."]
             return AdequacyStatus.ADEQUATE, []
 
         # Evaluate topical coverage across evidence text
@@ -63,8 +73,14 @@ class EvidenceAdequacyController:
         coverage = matched_words / len(substantive)
 
         # Check channel agreement and reranker scores
-        reasons = [u.retrieval_reason for u in context.evidence]
-        has_agreement = any("+" in r and ("exact" in r or "lexical" in r) for r in reasons)
+        channel_sets = [
+            {c for c in u.retrieval_reason.split("+") if c and c != "reranker"}
+            for u in context.evidence
+        ]
+        has_agreement = any(
+            len(channels) >= 2 and bool(channels & {"exact", "lexical"})
+            for channels in channel_sets
+        )
         top_score = max((u.reranker_score for u in context.evidence if u.reranker_score is not None), default=0.0)
 
         if has_agreement and top_score >= 0.70:

@@ -72,3 +72,38 @@ def test_pipeline_abstains_without_calling_generator_on_inadequate_evidence():
     assert response.abstained
     assert len(response.answer.claims) == 0
     assert "FinTaxGPT cannot confirm" in response.answer.answer_markdown
+
+
+def test_adequacy_requires_all_identifiers_and_exact_match():
+    controller = EvidenceAdequacyController()
+    pkg = ContextPackage(query="mixed query", evidence=(_sample_ev(),), total_text_units=40, settings_version="v1")
+    status, reasons = controller.evaluate("What is required under s 108-5 and TR 9999/99?", pkg)
+    assert status == AdequacyStatus.INADEQUATE
+    assert any("tr999999" in r for r in reasons)
+
+    ev_810 = EvidenceUnit(
+        evidence_id="E810", parent_id="p_810", document_id="doc_810", version_id="v1",
+        authority_class="legislation", citation_label="ITAA 1997 s 810", title="ITAA 1997 s 810",
+        source_url="https://ato.gov.au/810", heading_path=(), parent_locator={"section_id": "810"},
+        triggering_child_locator={"section_id": "810"}, retrieval_reason="exact+dense+reranker",
+        reranker_score=0.9, text="Section 810 provision text.", text_units=20,
+    )
+    pkg_810 = ContextPackage(query="s 8-1", evidence=(ev_810,), total_text_units=20, settings_version="v1")
+    status_810, reasons_810 = controller.evaluate("What deductions are available under Section 8-1?", pkg_810)
+    assert status_810 == AdequacyStatus.INADEQUATE
+    assert any("81" in r for r in reasons_810)
+
+
+def test_channel_agreement_requires_two_non_reranker_channels():
+    controller = EvidenceAdequacyController()
+    lone_lexical = EvidenceUnit(
+        evidence_id="EL", parent_id="p_EL", document_id="doc_lex", version_id="v1",
+        authority_class="guidance", citation_label="QC 55555", title="Fringe benefits guidance",
+        source_url="https://ato.gov.au/qc55555", heading_path=(), parent_locator={},
+        triggering_child_locator={}, retrieval_reason="lexical+reranker", reranker_score=0.85,
+        text="A completely distant snippet mentioning unrelated tax facts.", text_units=20,
+    )
+    pkg = ContextPackage(query="complex deduction", evidence=(lone_lexical,), total_text_units=20, settings_version="v1")
+    status, reasons = controller.evaluate("Deductibility of specialised overseas employee fringe benefits", pkg)
+    assert status == AdequacyStatus.INADEQUATE
+    assert any("Topic coverage too low" in r for r in reasons)
