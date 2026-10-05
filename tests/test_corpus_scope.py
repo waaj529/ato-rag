@@ -13,8 +13,8 @@ def test_in_scope_tax_legislation():
 def test_in_scope_ato_guidance_and_rulings():
     gate = CorpusScopeGate()
     assert gate.evaluate("Under PCG 2016/5, what are the safe harbour arm's length terms for SMSFs?").status == ScopeStatus.IN_SCOPE
-    assert gate.evaluate("What does Taxation Ruling TR 2006/2 say about ruling fees?").status == ScopeStatus.IN_SCOPE
-    assert gate.evaluate("What is the holding in TD 2004/1 regarding CGT event A1?").status == ScopeStatus.IN_SCOPE
+    assert gate.evaluate("What does Taxation Ruling TR 2006/2 say about service entity fees?").status == ScopeStatus.IN_SCOPE
+    assert gate.evaluate("What is the holding in TD 2004/1 regarding share-market subscriptions?").status == ScopeStatus.IN_SCOPE
 
 
 def test_in_scope_case_law():
