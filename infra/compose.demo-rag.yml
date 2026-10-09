@@ -1,0 +1,12 @@
+services:
+  rag:
+    build:
+      context: ..
+    env_file:
+      - ../.env
+      - path: /private/tmp/fintax-rag-demo-docker.env
+        required: false
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "127.0.0.1:8002:8002"

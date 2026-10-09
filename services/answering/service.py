@@ -11,6 +11,7 @@ from services.source_registry import CorpusScopeGate, ScopeStatus
 from services.verification import GroundedAnswerPipeline
 from .database import request_connection
 from .providers import request_providers
+from .query_normalization import expand_official_acronyms
 
 
 class AnswerService:
@@ -18,7 +19,7 @@ class AnswerService:
         self.pool, self.isaacus_key, self.generator = pool, isaacus_key, generator
 
     def execute(self, request, scope, answer=True):
-        query, matter_id = request.query, request.matter_id
+        query, matter_id = expand_official_acronyms(request.query), request.matter_id
         policy = ScopeSafetyPolicyGate().evaluate(query)
         scope_decision = CorpusScopeGate().evaluate(query)
         if not policy.passed or scope_decision.status == ScopeStatus.OUT_OF_CORPUS:

@@ -6,10 +6,13 @@ import time
 
 from cryptography.hazmat.primitives.asymmetric import rsa
 from fastapi.testclient import TestClient
-import jwt
 import pytest
 
+pytest.importorskip("jwt")
+import jwt
+
 from apps.api import create_app
+from apps.api.service_auth import ServiceTokenAuthenticator
 from packages.security.oidc import OIDCAuthenticator
 from packages.telemetry import TelemetryExportError
 
@@ -30,12 +33,12 @@ def api():
                    "iat": int(time.time()), "exp": int(time.time())+300, "matter_ids": ["matter-1"]}
         payload.update(overrides)
         return jwt.encode(payload, private, algorithm="RS256")
-    return TestClient(app), token, seen, traces, exporter
+    return TestClient(app), token, seen, traces, exporter, auth
 
 
 @pytest.mark.parametrize("token", [None, '{"sub":"admin","tid":"victim"}', "admin:victim:admin"])
 def test_unsigned_and_missing_tokens_are_rejected(api, token):
-    client, _, seen, _, _ = api
+    client, _, seen, _, _, _ = api
     headers = {"Authorization": f"Bearer {token}"} if token else {}
     assert client.post("/v1/answer", json={"query": "tax"}, headers=headers).status_code == 401
     assert seen == []
@@ -43,13 +46,13 @@ def test_unsigned_and_missing_tokens_are_rejected(api, token):
 
 @pytest.mark.parametrize("override", [{"aud": "other"}, {"iss": "https://other.example"}, {"exp": 1}])
 def test_wrong_audience_issuer_and_expired_tokens_fail(api, override):
-    client, token, seen, _, _ = api
+    client, token, seen, _, _, _ = api
     assert client.post("/v1/answer", json={"query": "tax"}, headers={"Authorization": f"Bearer {token(**override)}"}).status_code == 401
     assert seen == []
 
 
 def test_scope_comes_from_verified_identity_not_request_body(api):
-    client, token, seen, traces, _ = api
+    client, token, seen, traces, _, _ = api
     headers = {"Authorization": f"Bearer {token()}"}
     assert client.post("/v1/answer", json={"query": "tax", "tenant_id": "victim"}, headers=headers).status_code == 422
     assert client.post("/v1/answer", json={"query": "tax", "matter_id": "other"}, headers=headers).status_code == 403
@@ -62,7 +65,7 @@ def test_scope_comes_from_verified_identity_not_request_body(api):
 
 
 def test_export_failure_blocks_success_response(api):
-    client, token, _, _, exporter = api
+    client, token, _, _, exporter, _ = api
     def fail(roots):
         raise TelemetryExportError("unavailable")
     exporter.export = fail
@@ -71,8 +74,35 @@ def test_export_failure_blocks_success_response(api):
     assert "trace" not in response.text
 
 
+def test_configured_chat_service_key_is_limited_to_public_corpus(api):
+    _, _, seen, _, exporter, auth = api
+    service = SimpleNamespace(execute=lambda body, scope, answer: seen.append((scope, body.matter_id, answer)) or {"ok": True})
+    app = create_app(
+        auth,
+        service,
+        exporter,
+        service_authenticator=ServiceTokenAuthenticator("chat-secret"),
+    )
+    client = TestClient(app)
+    response = client.post("/v1/answer", json={"query": "tax"}, headers={"Authorization": "Bearer chat-secret"})
+    assert response.status_code == 200
+    assert seen[-1][0].tenant_id == "fintax-chat"
+    assert seen[-1][0].classifications == ("PUBLIC_OFFICIAL",)
+    denied = client.post("/v1/answer", json={"query": "tax", "matter_id": "matter-1"}, headers={"Authorization": "Bearer chat-secret"})
+    assert denied.status_code == 403
+
+
+def test_service_only_mode_rejects_non_service_tokens(api):
+    _, _, _, _, exporter, _ = api
+    app = create_app(None, SimpleNamespace(execute=lambda *_: {"ok": True}), exporter,
+                     service_authenticator=ServiceTokenAuthenticator("chat-secret"))
+    response = TestClient(app).post("/v1/answer", json={"query": "tax"},
+                                    headers={"Authorization": "Bearer not-the-service-key"})
+    assert response.status_code == 401
+
+
 def test_concurrent_api_requests_preserve_distinct_tenants_and_trace_ids(api):
-    client, token, seen, traces, _ = api
+    client, token, seen, traces, _, _ = api
     def request(index):
         return client.post("/v1/retrieve", json={"query": "tax"},
                            headers={"Authorization": f"Bearer {token(tid=f'tenant-{index}')}"})

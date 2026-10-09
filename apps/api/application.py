@@ -17,7 +17,7 @@ class QueryRequest(BaseModel):
     matter_id: str | None = Field(default=None, max_length=200)
 
 
-def create_app(authenticator, service, exporter, lifespan=None):
+def create_app(authenticator, service, exporter, lifespan=None, service_authenticator=None):
     app = FastAPI(title="FinTaxGPT staging API", lifespan=lifespan)
     limiter, lock = RateLimiter(max_requests=30), Lock()
 
@@ -30,10 +30,14 @@ def create_app(authenticator, service, exporter, lifespan=None):
     def execute(body, authorization, answer):
         if not authorization or not authorization.startswith("Bearer "):
             raise HTTPException(401, "Bearer access token required", headers={"WWW-Authenticate": "Bearer"})
-        try:
-            scope = authenticator.authenticate(authorization[7:])
-        except ValueError:
-            raise HTTPException(401, "Invalid access token") from None
+        scope = service_authenticator.authenticate(authorization) if service_authenticator else None
+        if scope is None and authenticator is None:
+            raise HTTPException(401, "Invalid access token")
+        if scope is None:
+            try:
+                scope = authenticator.authenticate(authorization[7:])
+            except ValueError:
+                raise HTTPException(401, "Invalid access token") from None
         try:
             enforce_request_scope(scope, matter_id=body.matter_id)
             with lock:

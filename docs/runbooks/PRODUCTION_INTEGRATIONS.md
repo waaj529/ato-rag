@@ -4,6 +4,14 @@ Broad production remains blocked. The configurable API can be tested in staging 
 its dependencies are supplied. No provider/model, region, identity issuer or retention
 policy has been selected on the owner's behalf.
 
+## Local OpenAI generation setting
+
+On 2026-10-08, the local `OPENAI_API_KEY` passed FinTaxGPT's exact structured-output
+health request with `gpt-5.6-luna` at `https://api.openai.com/v1/chat/completions`.
+The local ignored `.env` is configured for that model and the current published
+text-token rates. This checks a local model invocation only; it does not measure legal
+answer quality or authorize production release.
+
 ## Generation
 
 Set these through the deployment secret manager/environment:
@@ -52,13 +60,31 @@ The API serves the frozen public corpus only. It does not search private matter 
 Run with the project environment:
 
 ```sh
-.venv/bin/python -m uvicorn apps.api:production_app --factory --host 127.0.0.1 --port 8000
+.venv/bin/python -m uvicorn apps.api:production_app --factory --env-file .env --host 127.0.0.1 --port 8000
 ```
+
+## Local Docker demo
+
+`infra/compose.demo-rag.yml` loads the project `.env` and starts without
+machine-specific files. The optional `/private/tmp/fintax-rag-demo-docker.env`
+override is only for a Docker database-host rewrite or temporary demo service
+key. Create it only when `.env` values are not reachable from the container;
+never commit it.
 
 Expose `/v1/answer` and `/v1/retrieve` only through the authenticated staging ingress with
 TLS and a request-body limit. Bodies contain `query` and optional `matter_id`; tenant,
 user, classification and role overrides are rejected. Per-process rate limits do not
 replace distributed gateway quotas. Deploying this factory does not authorize release.
+
+### Fintax chat backend
+
+Set `FINTAX_CHAT_SERVICE_API_KEY` only when the separately authenticated Fintax chat
+backend must call this service. Its bearer credential maps to the fixed
+`fintax-chat` identity and the `PUBLIC_OFFICIAL` classification only; it cannot request
+matter-scoped content. Configure the backend with the same value as
+`RAG_ANSWER_API_KEY` and with `RAG_ANSWER_URL` set to this service's base URL. The
+backend calls `POST /v1/answer` with `{ "query": "..." }` and stores only the returned
+validated answer, resolved citations, trace ID, abstention flag, and decision reason.
 
 ## Evaluation and operations
 

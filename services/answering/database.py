@@ -24,7 +24,7 @@ def reset_connection(conn):
 
 def create_pool(dsn):
     return ConnectionPool(dsn, min_size=1, max_size=8, timeout=10, open=False,
-                          kwargs={"autocommit": True}, configure=check_connection,
+                          kwargs={"autocommit": True, "prepare_threshold": None}, configure=check_connection,
                           check=check_connection, reset=reset_connection)
 
 

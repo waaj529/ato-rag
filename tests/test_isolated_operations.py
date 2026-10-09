@@ -7,8 +7,10 @@ import uuid
 import psycopg
 from psycopg import sql
 from psycopg.conninfo import make_conninfo
-from psycopg_pool import ConnectionPool
 import pytest
+
+pytest.importorskip("psycopg_pool")
+from psycopg_pool import ConnectionPool
 
 from packages.security import PermissionScope
 from services.answering.database import check_connection, request_connection

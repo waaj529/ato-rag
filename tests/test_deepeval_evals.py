@@ -5,6 +5,8 @@ from unittest.mock import MagicMock
 
 import pytest
 
+pytest.importorskip("deepeval")
+
 os.environ.setdefault("DEEPEVAL_TELEMETRY_OPT_OUT", "YES")
 
 from deepeval.models.base_model import DeepEvalBaseLLM
