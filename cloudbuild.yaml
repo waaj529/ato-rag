@@ -42,3 +42,7 @@ substitutions:
 images:
   - '$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
   - '$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/$_SERVICE_NAME:latest'
+
+options:
+  logging: NONE
+
