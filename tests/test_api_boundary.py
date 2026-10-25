@@ -101,6 +101,11 @@ def test_service_only_mode_rejects_non_service_tokens(api):
     assert response.status_code == 401
 
 
+def test_service_authenticator_rejects_non_ascii_bearer_tokens() -> None:
+    service_auth = ServiceTokenAuthenticator("chat-secret")
+    assert service_auth.authenticate("Bearer café") is None
+
+
 def test_concurrent_api_requests_preserve_distinct_tenants_and_trace_ids(api):
     client, token, seen, traces, _, _ = api
     def request(index):

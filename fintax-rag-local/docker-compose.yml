@@ -1,0 +1,41 @@
+services:
+  postgres:
+    image: pgvector/pgvector:0.8.6-pg17-bookworm
+    container_name: fintax-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${FINTAX_POSTGRES_DB:-fintaxgpt}
+      POSTGRES_USER: ${FINTAX_POSTGRES_USER:-fintaxgpt}
+      POSTGRES_PASSWORD: ${FINTAX_POSTGRES_PASSWORD:-fintaxgpt-local-only}
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - fintax_pgdata:/var/lib/postgresql/data
+      - ./postgres-data.sql.gz:/docker-entrypoint-initdb.d/001-data.sql.gz:ro
+      - ./init-scripts/002-finalize-roles.sh:/docker-entrypoint-initdb.d/002-finalize-roles.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  rag:
+    image: fintaxgpt-rag:latest
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: fintax-rag-api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      FINTAX_DATABASE_URL: postgresql://fintax_api:${FINTAX_POSTGRES_PASSWORD:-fintaxgpt-local-only}@postgres:5432/${FINTAX_POSTGRES_DB:-fintaxgpt}
+      FINTAX_TELEMETRY_EXPORTER: ${FINTAX_TELEMETRY_EXPORTER:-noop}
+    ports:
+      - "127.0.0.1:8002:8002"
+
+volumes:
+  fintax_pgdata:

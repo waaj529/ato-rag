@@ -22,7 +22,12 @@ class ServiceTokenAuthenticator:
         if not authorization or not authorization.startswith("Bearer "):
             return None
         token = authorization[7:]
-        if not hmac.compare_digest(token, self.api_key):
+        try:
+            token_bytes = token.encode("ascii")
+            expected_bytes = self.api_key.encode("ascii")
+        except UnicodeEncodeError:
+            return None
+        if not hmac.compare_digest(token_bytes, expected_bytes):
             return None
         return PermissionScope(
             tenant_id="fintax-chat",

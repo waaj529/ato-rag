@@ -1,0 +1,44 @@
+steps:
+  # 1. Build container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - '$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+      - '-t'
+      - '$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/$_SERVICE_NAME:latest'
+      - '.'
+
+  # 2. Push image to Google Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - '$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - '$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/$_SERVICE_NAME:latest'
+
+  # 3. Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - '$_SERVICE_NAME'
+      - '--image=$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+      - '--region=$_REGION'
+      - '--platform=managed'
+      - '--port=8080'
+      - '--allow-unauthenticated'
+      - '--set-env-vars=FINTAX_DATABASE_URL=postgresql://postgres:Hello%23%40321@34.129.203.238:5432/fintaxgpt,ISAACUS_API_KEY=iuak_v1_eXHfdAu8WH_WMJCM3gKqedMdLkrJxwxr9sM8BOxH7dW_b9ccb32b,FINTAX_CHAT_SERVICE_API_KEY=iydLKhe2t+TuHW7QxzSu903TkP4FWX5KtwrIBGnstyQ42lJJ,FINTAX_LLM_PROVIDER=openai,FINTAX_LLM_MODEL=gpt-4o,FINTAX_LLM_REVISION=gpt-4o,FINTAX_TELEMETRY_EXPORTER=noop'
+
+substitutions:
+  _REGION: 'australia-southeast2'
+  _SERVICE_NAME: 'fintaxgpt-rag'
+  _REPO_NAME: 'fintax-images'
+
+images:
+  - '$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+  - '$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/$_SERVICE_NAME:latest'

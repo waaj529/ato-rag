@@ -9,3 +9,8 @@ def test_expands_standalone_ato_acronym() -> None:
 
 def test_does_not_change_unrelated_text() -> None:
     assert expand_official_acronyms("What is GST?") == "What is GST?"
+
+
+def test_does_not_expand_an_already_canonical_ato_name() -> None:
+    query = "What is the Australian Taxation Office (ATO)?"
+    assert expand_official_acronyms(query) == query
